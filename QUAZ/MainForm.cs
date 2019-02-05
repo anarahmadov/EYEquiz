@@ -39,7 +39,6 @@ namespace QUAZ
         public MainForm()
         {
             InitializeComponent();
-            //this.
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -47,10 +46,10 @@ namespace QUAZ
             btnStart.Visible = false;
             labelQuestionCount.Visible = false;
             labelWelcome.Visible = false;
-            CurrentQuestion = 0;       
+            CurrentQuestion = 0;
 
             //initialize of QuestionControl[CurrentQuestion]
-
+            //var a =  Path.GetFullPath("QuestionsXML.xml");
             using (StreamReader streamReader = new StreamReader("QuestionsXML.xml"))
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(QuestionBlock[]));
@@ -60,7 +59,6 @@ namespace QUAZ
                 UserAnswers = new string[QuestionCount];
                 numberOfQuestion.Text = $"{CurrentQuestion + 1} / {QuestionCount} questions";
             }
-
             #region Question array declare
             QuestionControl = new QuestionControl[QuestionCount];
 
@@ -190,6 +188,7 @@ namespace QUAZ
                         (item as MetroFramework.Controls.MetroRadioButton).Enabled = false;
                     }
                 }
+
 
                 #endregion
 
@@ -348,8 +347,8 @@ namespace QUAZ
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            timer.Interval = 10;
-            timer.Start();
+            //timer.Interval = 10;
+            //timer.Start();
             Application.Exit();
         }
 
@@ -365,15 +364,15 @@ namespace QUAZ
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (this.Opacity > 0.0)
-            {
-                this.Opacity -= 0.025;
-            }
-            else
-            {
-                timer.Stop();
-                Application.Exit();
-            }
+            //if (this.Opacity > 0.0)
+            //{
+            //    this.Opacity -= 0.025;
+            //}
+            //else
+            //{
+            //    timer.Stop();
+            //    Application.Exit();
+            //}
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)

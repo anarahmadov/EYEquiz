@@ -39,7 +39,7 @@
             this.labelQuestion.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.labelQuestion.Location = new System.Drawing.Point(15, 57);
             this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(702, 138);
+            this.labelQuestion.Size = new System.Drawing.Size(738, 138);
             this.labelQuestion.TabIndex = 13;
             this.labelQuestion.UseCustomBackColor = true;
             this.labelQuestion.UseCustomForeColor = true;
@@ -50,7 +50,7 @@
             this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel.Location = new System.Drawing.Point(15, 230);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(750, 142);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(738, 142);
             this.flowLayoutPanel.TabIndex = 15;
             // 
             // QuestionControl

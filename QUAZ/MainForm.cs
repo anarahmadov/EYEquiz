@@ -19,6 +19,10 @@ namespace QUAZ
     {
         public QuestionBlock[] Questions { get; set; }
         public QuestionControl[] QuestionControl { get; set; }
+        public LogIn LoginView { get => logInView; set => logInView = value; }
+        public AddQuestionOrGoExam _AddQuestionOrGoExam { get; set; }
+        public AddQuestion _AddQuestion { get; set; }
+        public ChooseQuestions _ChooseQuestions { get; set; }
 
         public int QuestionCount { get; set; }
         public int Answercount { get; set; }
@@ -28,6 +32,9 @@ namespace QUAZ
         public MetroFramework.Controls.MetroButton BtnAccept { get; set; }
         public MetroFramework.Controls.MetroButton BtnNext { get; set; }
         public MetroFramework.Controls.MetroButton BtnSubmit { get; set; }
+        //public StatusStrip StatusStrip { get => statusStrip; set => statusStrip = value; }
+           
+        public string NumberOfQuestion { get => numberOfQuestion.Text; set => numberOfQuestion.Text = value; }
 
         public string[] UserAnswers { get; set; }
         public bool isClickSubmit { get; set; }
@@ -40,11 +47,89 @@ namespace QUAZ
             InitializeComponent();
         }
 
+        public void FirstQuestionAnswersInitialize()
+        {
+            #region Answers initialize
+
+            for (int i = 0; i < Answercount; i++)
+            {
+                var variant = new MetroFramework.Controls.MetroRadioButton();
+                variant.UseCustomForeColor = true;
+                variant.ForeColor = Color.DarkGray;
+                variant.Cursor = Cursors.Hand;
+                variant.Style = MetroFramework.MetroColorStyle.Brown;
+                variant.AutoSize = false;
+                variant.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+                variant.Text = Questions[CurrentQuestion].Answers[i].Text;
+                variant.Size = new Size(700, 20);
+                variant.UseCustomBackColor = true;
+                variant.BackColor = Color.FromArgb(0, 0, 0, 0);
+                variant.CheckedChanged += Answers_CheckedChanged;
+                QuestionControl[CurrentQuestion].Flow.Controls.Add(variant);
+            }
+
+            #endregion
+        }
+
+        public void FourButtonInitialize()
+        {
+            #region Four buttons initialize
+            BtnBack = new MetroFramework.Controls.MetroButton();
+            BtnAccept = new MetroFramework.Controls.MetroButton();
+            BtnNext = new MetroFramework.Controls.MetroButton();
+            BtnSubmit = new MetroFramework.Controls.MetroButton();
+
+            BtnSubmit.Size = new Size(150, 60);
+            BtnSubmit.Location = new Point(600, 415);
+            BtnSubmit.Text = "Submit";
+            BtnSubmit.Click += BtnSubmit_Click;
+            BtnSubmit.UseStyleColors = true;
+            BtnSubmit.UseCustomBackColor = true;
+            BtnSubmit.BackColor = Color.FromArgb(0, 0, 0, 0);
+            BtnSubmit.Style = MetroFramework.MetroColorStyle.Black;
+            BtnSubmit.TabStop = false;
+
+            BtnBack.Size = new Size(130, 40);
+            BtnBack.Location = new Point(10, 429);
+            BtnBack.Text = "Back";
+            BtnBack.Click += BtnBack_Click;
+            BtnBack.UseStyleColors = true;
+            BtnBack.UseCustomBackColor = true;
+            BtnBack.BackColor = Color.FromArgb(0, 0, 0, 0);
+            BtnBack.Style = MetroFramework.MetroColorStyle.Black;
+            BtnBack.TabStop = false;
+
+            BtnAccept.Size = new Size(130, 40);
+            BtnAccept.Location = new Point(200, 429);
+            BtnAccept.Text = "Accept";
+            BtnAccept.Enabled = false;
+            BtnAccept.Click += BtnAccept_Click;
+            BtnAccept.UseStyleColors = true;
+            BtnAccept.UseCustomBackColor = true;
+            BtnAccept.BackColor = Color.FromArgb(0, 0, 0, 0);
+            BtnAccept.Style = MetroFramework.MetroColorStyle.Black;
+            BtnAccept.TabStop = false;
+
+            BtnNext.Size = new Size(130, 40);
+            BtnNext.Location = new Point(390, 429);
+            BtnNext.Text = "Next";
+            BtnNext.Click += BtnNext_Click;
+            BtnNext.UseStyleColors = true;
+            BtnNext.UseCustomBackColor = true;
+            BtnNext.BackColor = Color.FromArgb(0, 0, 0, 0);
+            BtnNext.Style = MetroFramework.MetroColorStyle.Black;
+            BtnNext.TabStop = false;
+
+
+            this.Controls.Add(BtnSubmit);
+            this.Controls.Add(BtnBack);
+            this.Controls.Add(BtnAccept);
+            this.Controls.Add(BtnNext);
+            #endregion
+        }
+
         private void btnStart_Click(object sender, EventArgs e)
         {
-            btnStart.Visible = false;
-            labelQuestionCount.Visible = false;
-            labelWelcome.Visible = false;
             CurrentQuestion = 0;
 
             //initialize of QuestionControl[CurrentQuestion]
@@ -365,16 +450,6 @@ namespace QUAZ
             Application.Exit();
         }
 
-        private void btnStart_MouseEnter(object sender, EventArgs e)
-        {
-            btnStart.BackColor = Color.Teal;
-        }
-
-        private void btnStart_MouseLeave(object sender, EventArgs e)
-        {
-            btnStart.BackColor = Color.FromArgb(0,0,0,0);
-        }
-
         private void timer_Tick(object sender, EventArgs e)
         {
             //if (this.Opacity > 0.0)
@@ -415,7 +490,12 @@ namespace QUAZ
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            LoginView.Location = new Point(0, 49);         
+
 
         }
+
+
+
     }
 }

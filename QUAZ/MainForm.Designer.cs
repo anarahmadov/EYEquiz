@@ -29,35 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btnStart = new MetroFramework.Controls.MetroButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.numberOfQuestion = new System.Windows.Forms.ToolStripStatusLabel();
-            this.labelWelcome = new MetroFramework.Controls.MetroLabel();
-            this.labelQuestionCount = new MetroFramework.Controls.MetroLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.btnExit = new MetroFramework.Controls.MetroButton();
             this.btnMinimize = new MetroFramework.Controls.MetroButton();
             this.topPanel = new MetroFramework.Controls.MetroPanel();
+            this.logInView = new QUAZ.LogIn(this);
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnStart
-            // 
-            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnStart.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.btnStart.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.btnStart.Location = new System.Drawing.Point(233, 278);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(326, 71);
-            this.btnStart.TabIndex = 12;
-            this.btnStart.TabStop = false;
-            this.btnStart.Text = "START QUIZ";
-            this.btnStart.UseCustomBackColor = true;
-            this.btnStart.UseCustomForeColor = true;
-            this.btnStart.UseSelectable = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            this.btnStart.MouseEnter += new System.EventHandler(this.btnStart_MouseEnter);
-            this.btnStart.MouseLeave += new System.EventHandler(this.btnStart_MouseLeave);
             // 
             // statusStrip
             // 
@@ -76,34 +56,6 @@
             this.numberOfQuestion.Name = "numberOfQuestion";
             this.numberOfQuestion.Size = new System.Drawing.Size(0, 17);
             this.numberOfQuestion.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            // 
-            // labelWelcome
-            // 
-            this.labelWelcome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelWelcome.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.labelWelcome.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.labelWelcome.ForeColor = System.Drawing.Color.DarkGray;
-            this.labelWelcome.Location = new System.Drawing.Point(159, 116);
-            this.labelWelcome.Name = "labelWelcome";
-            this.labelWelcome.Size = new System.Drawing.Size(490, 83);
-            this.labelWelcome.TabIndex = 16;
-            this.labelWelcome.Text = "Welcome to Quiz Azerbaijan";
-            this.labelWelcome.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelWelcome.UseCustomBackColor = true;
-            this.labelWelcome.UseCustomForeColor = true;
-            // 
-            // labelQuestionCount
-            // 
-            this.labelQuestionCount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelQuestionCount.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.labelQuestionCount.Location = new System.Drawing.Point(310, 211);
-            this.labelQuestionCount.Name = "labelQuestionCount";
-            this.labelQuestionCount.Size = new System.Drawing.Size(174, 35);
-            this.labelQuestionCount.TabIndex = 17;
-            this.labelQuestionCount.Text = "Total question count :  20";
-            this.labelQuestionCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelQuestionCount.UseCustomBackColor = true;
-            this.labelQuestionCount.UseCustomForeColor = true;
             // 
             // timer
             // 
@@ -162,19 +114,25 @@
             this.topPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseMove);
             this.topPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseUp);
             // 
+            // logInView
+            // 
+            this.logInView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            this.logInView.Location = new System.Drawing.Point(1, 49);
+            this.logInView.Name = "logInView";
+            this.logInView.Size = new System.Drawing.Size(800, 426);
+            this.logInView.TabIndex = 21;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(801, 500);
+            this.Controls.Add(this.logInView);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.topPanel);
-            this.Controls.Add(this.labelWelcome);
-            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.labelQuestionCount);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.Text = "QUAZ";
@@ -187,15 +145,13 @@
         }
 
         #endregion
-        private MetroFramework.Controls.MetroButton btnStart;
         private System.Windows.Forms.StatusStrip statusStrip;
-        private MetroFramework.Controls.MetroLabel labelWelcome;
-        private MetroFramework.Controls.MetroLabel labelQuestionCount;
         private System.Windows.Forms.ToolStripStatusLabel numberOfQuestion;
         private System.Windows.Forms.Timer timer;
         private MetroFramework.Controls.MetroButton btnExit;
         private MetroFramework.Controls.MetroButton btnMinimize;
         private MetroFramework.Controls.MetroPanel topPanel;
+        private LogIn logInView;
     }
 }
 

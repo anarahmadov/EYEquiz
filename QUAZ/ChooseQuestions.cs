@@ -39,19 +39,19 @@ namespace QUAZ
             {
                 using (StreamReader streamReader = new StreamReader("QuestionsXML.xml"))
                 {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(QuestionBlock[]));
-                    var obj = (QuestionBlock[])xmlSerializer.Deserialize(streamReader);
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
+                    var obj = (List<QuestionBlock>)xmlSerializer.Deserialize(streamReader);
                     MainForm.Questions = obj;
                     MainForm.QuestionCount = MainForm.Questions.Count();
                     MainForm.UserAnswers = new string[MainForm.QuestionCount];
                     MainForm.NumberOfQuestion = $"{MainForm.CurrentQuestion + 1} / {MainForm.QuestionCount} questions";
                 }
                 #region Question array declare
-                MainForm.QuestionControl = new QuestionControl[MainForm.QuestionCount];
+                MainForm.QuestionControl = new List<QuestionControl>();
 
                 for (int i = 0; i < MainForm.QuestionCount; i++)
                 {
-                    MainForm.QuestionControl[i] = new QuestionControl(MainForm);
+                    MainForm.QuestionControl.Add(new QuestionControl(MainForm));
                 }
                 #endregion
 

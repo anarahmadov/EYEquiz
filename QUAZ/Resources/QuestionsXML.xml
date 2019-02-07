@@ -1,0 +1,506 @@
+<?xml version="1.0"?>
+<ArrayOfQuestionBlock xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <QuestionBlock id="0">
+    <Text>Flight crew members on the flight deck shall keep their safety belt fastened 
+
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> from take off to landing
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="1">
+        <Text> only during take off and landing 
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> only during take off and landing and whenever necessary by the commander in the interest  of safety
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="3">
+        <Text> while at their station 
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="1">
+    <Text>
+ 
+ Who shall provide the flight operations personal with a operations manual and also issue the amendments
+to keep it up to date 
+ 
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> Owner of the aircraft
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="1">
+        <Text> Aircraft producer 
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="2">
+        <Text> Aircraft operator
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> ATS authority of the state of registry 
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="2">
+    <Text>
+
+ Who checks, before flight, that the aircraft's weight is such that flight can be safely made, and that any transported cargo is properly distributed and secured? (Annex 6, Part I)
+ 
+ </Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> The operator
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="1">
+        <Text> The mechanic on board, or in his absence the co-pilot 
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="2">
+        <Text> The captain 
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> The company's cargo technicians
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="3">
+    <Text>
+
+ For twin-engined aircraft, the take-off alternate shall be located at a distance that : (Annex 6, Part I)
+ 
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> Does not exceed the equivalent of two hour of flight time at cruising speed all engines operating 
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> Does not exceed the equivalent of one hour of flight time, at cruising speed with only one
+engine operative
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> Does not exceed the equivalent of two hours of flight time, at cruising speed with only one engine operative
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> Does not exceed the equivalent of one hour of flight time at cruising speed all engines operating 
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="4">
+    <Text>
+
+ When refueling is being performed while passengers are boarding or disembarking  the aircraft, it is necessary that: (Annex 6, Part I)
+ 
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> All the flight crew be on board 
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> Communications be maintained between ground personnel and qualified personnel on board.
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> The aircraft's stairs be completely extended.
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> Refueling is prohibited while passengers are boarding and/or disembarking.
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="5">
+    <Text>
+
+The operator will include in the operations manual a list of minimum required equipment approved by : (Annex 6, Part I)
+
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> The country where the aircraft is operated
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> The country of the operator
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> The country where the aircraft was manufactured 
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> It is not mandatory that such a book be approved by aviation authorities
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="6">
+    <Text>
+
+ Aircraft using a VFR flight plan in controlled airspace shall be equipped: (Annex 6,Part I)
+ 
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> Only as is necessary for aircraft that make VFR flights 
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> As is necessary for aircraft that operate in accordance with instrument flight rules 
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> With more anti-icing and/or de-icing devices (if one expects icy conditions).
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> As is necessary for aircraft that make VFR flights, and such aircraft must also possess indicators of attitude and course, along with a precise barometric altimeter.
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="7">
+    <Text>
+
+ The M.E.L. (Minimum Equipment List) is drawn up by :
+ 
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> the manufacturer
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> the operator 
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> the aircraft manufacturer's list
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> the aircraft state of registry
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="8">
+    <Text>
+
+ The M.M.E.L. (Master Minimum Equipment List) is drawn up by :
+ 
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> the operator
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> the manufacturer
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text>  the aircraft manufacturer's list
+ </Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> the aircraft state of registry
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="9">
+    <Text>
+
+ A category I precision approach (CAT I) is an approach which may be carried out  with a runway visual range of at least :
+
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> 800 m
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> 550 m
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> 350 m 
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> 500 m
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="10">
+    <Text>
+
+
+Flight crew members on the flight deck shall keep their safety belt fastened 
+
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> from take off to landing
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="1">
+        <Text> only during take off and landing 
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> only during take off and landing and whenever necessary by the commander in the interest  of safety
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="3">
+        <Text> while at their station 
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="11">
+    <Text>
+ 
+ Who shall provide the flight operations personal with a operations manual and also issue the amendments
+to keep it up to date 
+ 
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> Owner of the aircraft
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="1">
+        <Text> Aircraft producer 
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="2">
+        <Text> Aircraft operator
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> ATS authority of the state of registry 
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="12">
+    <Text>
+
+ Who checks, before flight, that the aircraft's weight is such that flight can be safely made, and that any transported cargo is properly distributed and secured? (Annex 6, Part I)
+ 
+ </Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> The operator
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="1">
+        <Text> The mechanic on board, or in his absence the co-pilot 
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="2">
+        <Text> The captain 
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> The company's cargo technicians
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="13">
+    <Text>
+
+ For twin-engined aircraft, the take-off alternate shall be located at a distance that : (Annex 6, Part I)
+ 
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> Does not exceed the equivalent of two hour of flight time at cruising speed all engines operating 
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> Does not exceed the equivalent of one hour of flight time, at cruising speed with only one
+engine operative
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> Does not exceed the equivalent of two hours of flight time, at cruising speed with only one engine operative
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> Does not exceed the equivalent of one hour of flight time at cruising speed all engines operating 
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="14">
+    <Text>
+
+ When refueling is being performed while passengers are boarding or disembarking  the aircraft, it is necessary that: (Annex 6, Part I)
+ 
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> All the flight crew be on board 
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> Communications be maintained between ground personnel and qualified personnel on board.
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> The aircraft's stairs be completely extended.
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> Refueling is prohibited while passengers are boarding and/or disembarking.
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="15">
+    <Text>
+
+The operator will include in the operations manual a list of minimum required equipment approved by : (Annex 6, Part I)
+
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> The country where the aircraft is operated
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> The country of the operator
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> The country where the aircraft was manufactured 
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> It is not mandatory that such a book be approved by aviation authorities
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="16">
+    <Text>
+
+ Aircraft using a VFR flight plan in controlled airspace shall be equipped: (Annex 6,Part I)
+ 
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> Only as is necessary for aircraft that make VFR flights 
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> As is necessary for aircraft that operate in accordance with instrument flight rules 
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> With more anti-icing and/or de-icing devices (if one expects icy conditions).
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> As is necessary for aircraft that make VFR flights, and such aircraft must also possess indicators of attitude and course, along with a precise barometric altimeter.
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="17">
+    <Text>
+
+ The M.E.L. (Minimum Equipment List) is drawn up by :
+ 
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> the manufacturer
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> the operator 
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> the aircraft manufacturer's list
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> the aircraft state of registry
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="18">
+    <Text>
+
+ The M.M.E.L. (Master Minimum Equipment List) is drawn up by :
+ 
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> the operator
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> the manufacturer
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text>  the aircraft manufacturer's list
+ </Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> the aircraft state of registry
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+  <QuestionBlock id="19">
+    <Text>
+
+ A category I precision approach (CAT I) is an approach which may be carried out  with a runway visual range of at least :
+
+</Text>
+    <Answers>
+      <Answer IsCorrect="No" id="0">
+        <Text> 800 m
+</Text>
+      </Answer>
+      <Answer IsCorrect="Yes" id="1">
+        <Text> 550 m
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="2">
+        <Text> 350 m 
+</Text>
+      </Answer>
+      <Answer IsCorrect="No" id="3">
+        <Text> 500 m
+</Text>
+      </Answer>
+    </Answers>
+  </QuestionBlock>
+</ArrayOfQuestionBlock>

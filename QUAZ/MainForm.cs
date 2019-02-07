@@ -17,8 +17,8 @@ namespace QUAZ
 {
     public partial class MainForm : Form
     {
-        public QuestionBlock[] Questions { get; set; }
-        public QuestionControl[] QuestionControl { get; set; }
+        public List<QuestionBlock> Questions { get; set; }
+        public List<QuestionControl> QuestionControl { get; set; }
         public LogIn LoginView { get => logInView; set => logInView = value; }
         public AddQuestionOrGoExam _AddQuestionOrGoExam { get; set; }
         public AddQuestion _AddQuestion { get; set; }
@@ -130,111 +130,111 @@ namespace QUAZ
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            CurrentQuestion = 0;
+            //CurrentQuestion = 0;
 
-            //initialize of QuestionControl[CurrentQuestion]
-            if (File.Exists("QuestionsXML.xml"))
-            {
-                using (StreamReader streamReader = new StreamReader("QuestionsXML.xml"))
-                {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(QuestionBlock[]));
-                    var obj = (QuestionBlock[])xmlSerializer.Deserialize(streamReader);
-                    Questions = obj;
-                    QuestionCount = Questions.Count();
-                    UserAnswers = new string[QuestionCount];
-                    numberOfQuestion.Text = $"{CurrentQuestion + 1} / {QuestionCount} questions";
-                    //numberOfQuestion.ForeColor = 
-                }
-                #region Question array declare
-                QuestionControl = new QuestionControl[QuestionCount];
+            ////initialize of QuestionControl[CurrentQuestion]
+            //if (File.Exists("QuestionsXML.xml"))
+            //{
+            //    using (StreamReader streamReader = new StreamReader("QuestionsXML.xml"))
+            //    {
+            //        XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
+            //        var obj = (List<QuestionBlock>)xmlSerializer.Deserialize(streamReader);
+            //        Questions = obj;
+            //        QuestionCount = Questions.Count();
+            //        UserAnswers = new string[QuestionCount];
+            //        numberOfQuestion.Text = $"{CurrentQuestion + 1} / {QuestionCount} questions";
 
-                for (int i = 0; i < QuestionCount; i++)
-                {
-                    QuestionControl[i] = new QuestionControl(this);
-                }
-                #endregion
+            //    }
+            //    #region Question array declare
+            //    QuestionControl = new List<QuestionControl>();
 
-                Answercount = Questions[CurrentQuestion].Answers.Count();
-                QuestionControl[CurrentQuestion].LabelQuestion.Text = Questions[CurrentQuestion].Text;
-                QuestionControl[CurrentQuestion].Location = new Point(14, 35);
+            //    for (int i = 0; i < QuestionCount; i++)
+            //    {
+            //        QuestionControl[i] = new QuestionControl(this);
+            //    }
+            //    #endregion
 
-                #region Answers initialize
+            //    Answercount = Questions[CurrentQuestion].Answers.Count();
+            //    QuestionControl[CurrentQuestion].LabelQuestion.Text = Questions[CurrentQuestion].Text;
+            //    QuestionControl[CurrentQuestion].Location = new Point(14, 35);
 
-                for (int i = 0; i < Answercount; i++)
-                {
-                    var variant = new MetroFramework.Controls.MetroRadioButton();
-                    variant.UseCustomForeColor = true;
-                    variant.ForeColor = Color.DarkGray;
-                    variant.Cursor = Cursors.Hand;
-                    variant.Style = MetroFramework.MetroColorStyle.Brown;
-                    variant.AutoSize = false;
-                    variant.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-                    variant.Text = Questions[CurrentQuestion].Answers[i].Text;
-                    variant.Size = new Size(700, 20);
-                    variant.UseCustomBackColor = true;
-                    variant.BackColor = Color.FromArgb(0, 0, 0, 0);
-                    variant.CheckedChanged += Answers_CheckedChanged;
-                    QuestionControl[CurrentQuestion].Flow.Controls.Add(variant);
-                }
+            //    #region Answers initialize
 
-                #endregion
+            //    for (int i = 0; i < Answercount; i++)
+            //    {
+            //        var variant = new MetroFramework.Controls.MetroRadioButton();
+            //        variant.UseCustomForeColor = true;
+            //        variant.ForeColor = Color.DarkGray;
+            //        variant.Cursor = Cursors.Hand;
+            //        variant.Style = MetroFramework.MetroColorStyle.Brown;
+            //        variant.AutoSize = false;
+            //        variant.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+            //        variant.Text = Questions[CurrentQuestion].Answers[i].Text;
+            //        variant.Size = new Size(700, 20);
+            //        variant.UseCustomBackColor = true;
+            //        variant.BackColor = Color.FromArgb(0, 0, 0, 0);
+            //        variant.CheckedChanged += Answers_CheckedChanged;
+            //        QuestionControl[CurrentQuestion].Flow.Controls.Add(variant);
+            //    }
 
-                #region Four buttons initialize
-                BtnBack = new MetroFramework.Controls.MetroButton();
-                BtnAccept = new MetroFramework.Controls.MetroButton();
-                BtnNext = new MetroFramework.Controls.MetroButton();
-                BtnSubmit = new MetroFramework.Controls.MetroButton();
+            //    #endregion
 
-                BtnSubmit.Size = new Size(150, 60);
-                BtnSubmit.Location = new Point(600, 415);
-                BtnSubmit.Text = "Submit";
-                BtnSubmit.Click += BtnSubmit_Click;
-                BtnSubmit.UseStyleColors = true;
-                BtnSubmit.UseCustomBackColor = true;
-                BtnSubmit.BackColor = Color.FromArgb(0, 0, 0, 0);
-                BtnSubmit.Style = MetroFramework.MetroColorStyle.Black;
-                BtnSubmit.TabStop = false;
+            //    #region Four buttons initialize
+            //    BtnBack = new MetroFramework.Controls.MetroButton();
+            //    BtnAccept = new MetroFramework.Controls.MetroButton();
+            //    BtnNext = new MetroFramework.Controls.MetroButton();
+            //    BtnSubmit = new MetroFramework.Controls.MetroButton();
 
-                BtnBack.Size = new Size(130, 40);
-                BtnBack.Location = new Point(10, 429);
-                BtnBack.Text = "Back";
-                BtnBack.Click += BtnBack_Click;
-                BtnBack.UseStyleColors = true;
-                BtnBack.UseCustomBackColor = true;
-                BtnBack.BackColor = Color.FromArgb(0, 0, 0, 0);
-                BtnBack.Style = MetroFramework.MetroColorStyle.Black;
-                BtnBack.TabStop = false;
+            //    BtnSubmit.Size = new Size(150, 60);
+            //    BtnSubmit.Location = new Point(600, 415);
+            //    BtnSubmit.Text = "Submit";
+            //    BtnSubmit.Click += BtnSubmit_Click;
+            //    BtnSubmit.UseStyleColors = true;
+            //    BtnSubmit.UseCustomBackColor = true;
+            //    BtnSubmit.BackColor = Color.FromArgb(0, 0, 0, 0);
+            //    BtnSubmit.Style = MetroFramework.MetroColorStyle.Black;
+            //    BtnSubmit.TabStop = false;
 
-                BtnAccept.Size = new Size(130, 40);
-                BtnAccept.Location = new Point(200, 429);
-                BtnAccept.Text = "Accept";
-                BtnAccept.Enabled = false;
-                BtnAccept.Click += BtnAccept_Click;
-                BtnAccept.UseStyleColors = true;
-                BtnAccept.UseCustomBackColor = true;
-                BtnAccept.BackColor = Color.FromArgb(0, 0, 0, 0);
-                BtnAccept.Style = MetroFramework.MetroColorStyle.Black;
-                BtnAccept.TabStop = false;
+            //    BtnBack.Size = new Size(130, 40);
+            //    BtnBack.Location = new Point(10, 429);
+            //    BtnBack.Text = "Back";
+            //    BtnBack.Click += BtnBack_Click;
+            //    BtnBack.UseStyleColors = true;
+            //    BtnBack.UseCustomBackColor = true;
+            //    BtnBack.BackColor = Color.FromArgb(0, 0, 0, 0);
+            //    BtnBack.Style = MetroFramework.MetroColorStyle.Black;
+            //    BtnBack.TabStop = false;
 
-                BtnNext.Size = new Size(130, 40);
-                BtnNext.Location = new Point(390, 429);
-                BtnNext.Text = "Next";
-                BtnNext.Click += BtnNext_Click;
-                BtnNext.UseStyleColors = true;
-                BtnNext.UseCustomBackColor = true;
-                BtnNext.BackColor = Color.FromArgb(0, 0, 0, 0);
-                BtnNext.Style = MetroFramework.MetroColorStyle.Black;
-                BtnNext.TabStop = false;
+            //    BtnAccept.Size = new Size(130, 40);
+            //    BtnAccept.Location = new Point(200, 429);
+            //    BtnAccept.Text = "Accept";
+            //    BtnAccept.Enabled = false;
+            //    BtnAccept.Click += BtnAccept_Click;
+            //    BtnAccept.UseStyleColors = true;
+            //    BtnAccept.UseCustomBackColor = true;
+            //    BtnAccept.BackColor = Color.FromArgb(0, 0, 0, 0);
+            //    BtnAccept.Style = MetroFramework.MetroColorStyle.Black;
+            //    BtnAccept.TabStop = false;
+
+            //    BtnNext.Size = new Size(130, 40);
+            //    BtnNext.Location = new Point(390, 429);
+            //    BtnNext.Text = "Next";
+            //    BtnNext.Click += BtnNext_Click;
+            //    BtnNext.UseStyleColors = true;
+            //    BtnNext.UseCustomBackColor = true;
+            //    BtnNext.BackColor = Color.FromArgb(0, 0, 0, 0);
+            //    BtnNext.Style = MetroFramework.MetroColorStyle.Black;
+            //    BtnNext.TabStop = false;
 
 
-                this.Controls.Add(BtnSubmit);
-                this.Controls.Add(BtnBack);
-                this.Controls.Add(BtnAccept);
-                this.Controls.Add(BtnNext);
-                #endregion
+            //    this.Controls.Add(BtnSubmit);
+            //    this.Controls.Add(BtnBack);
+            //    this.Controls.Add(BtnAccept);
+            //    this.Controls.Add(BtnNext);
+            //    #endregion
 
-                this.Controls.Add(QuestionControl[CurrentQuestion]);
-            }
+            //    this.Controls.Add(QuestionControl[CurrentQuestion]);
+            //}
         }
 
         private void BtnSubmit_Click(object sender, EventArgs e)

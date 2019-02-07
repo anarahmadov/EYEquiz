@@ -29,7 +29,6 @@ namespace QUAZ
             MainForm.Controls.Add(MainForm._AddQuestionOrGoExam);
 
             var directory = Directory.CreateDirectory(".");
-            MessageBox.Show(directory.Name);
 
                 
          

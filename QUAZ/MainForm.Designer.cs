@@ -35,7 +35,7 @@
             this.btnExit = new MetroFramework.Controls.MetroButton();
             this.btnMinimize = new MetroFramework.Controls.MetroButton();
             this.topPanel = new MetroFramework.Controls.MetroPanel();
-            this.logInView = new QUAZ.LogIn(this);
+            this.logInView = new LogIn(this);
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,25 +114,17 @@
             this.topPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseMove);
             this.topPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseUp);
             // 
-            // logInView
-            // 
-            this.logInView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            this.logInView.Location = new System.Drawing.Point(1, 49);
-            this.logInView.Name = "logInView";
-            this.logInView.Size = new System.Drawing.Size(800, 426);
-            this.logInView.TabIndex = 21;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(801, 500);
-            this.Controls.Add(this.logInView);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.topPanel);
             this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.logInView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
             this.Text = "QUAZ";

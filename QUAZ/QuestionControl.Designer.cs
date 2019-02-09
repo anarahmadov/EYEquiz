@@ -38,7 +38,7 @@
             this.labelQuestion.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.labelQuestion.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.labelQuestion.ForeColor = System.Drawing.Color.DarkGray;
-            this.labelQuestion.Location = new System.Drawing.Point(15, 65);
+            this.labelQuestion.Location = new System.Drawing.Point(15, 71);
             this.labelQuestion.Name = "labelQuestion";
             this.labelQuestion.Size = new System.Drawing.Size(738, 138);
             this.labelQuestion.TabIndex = 13;

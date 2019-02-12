@@ -35,7 +35,6 @@
             this.btnExit = new MetroFramework.Controls.MetroButton();
             this.btnMinimize = new MetroFramework.Controls.MetroButton();
             this.topPanel = new MetroFramework.Controls.MetroPanel();
-            this.logInView = new LogIn(this);
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,9 +123,9 @@
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.topPanel);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.logInView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "QUAZ";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.statusStrip.ResumeLayout(false);
@@ -143,7 +142,6 @@
         private MetroFramework.Controls.MetroButton btnExit;
         private MetroFramework.Controls.MetroButton btnMinimize;
         private MetroFramework.Controls.MetroPanel topPanel;
-        private LogIn logInView;
     }
 }
 

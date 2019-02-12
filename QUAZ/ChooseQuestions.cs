@@ -15,6 +15,7 @@ namespace QUAZ
     public partial class ChooseQuestions : UserControl
     {
         MainForm MainForm;
+        CustomMessageBox customMessageBox = new CustomMessageBox();
 
         public ChooseQuestions(MainForm mainForm)
         {
@@ -22,48 +23,82 @@ namespace QUAZ
             InitializeComponent();
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            this.Visible = false;
-            MainForm._AddQuestionOrGoExam.Visible = true;
-        }
-
         private void btnStart_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
-
-            MainForm.CurrentQuestion = 0;
-
-            //initialize of QuestionControl[CurrentQuestion]
-            if (File.Exists("QuestionsXML.xml"))
+            if (listViewAllQuestions.SelectedIndices.Count != 0)
             {
-                using (StreamReader streamReader = new StreamReader("QuestionsXML.xml"))
+                this.Visible = false;
+                MainForm.CurrentQuestion = 0;
+
+                #region Deserialize file that selected in listview
+                var defaulttestpath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + $@"\EYEquiz\{listViewAllQuestions.SelectedItems[0].Text}";
+
+                //initialize of QuestionControl[CurrentQuestion]
+                if (File.Exists(defaulttestpath))
                 {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
-                    var obj = (List<QuestionBlock>)xmlSerializer.Deserialize(streamReader);
-                    MainForm.Questions = obj;
-                    MainForm.QuestionCount = MainForm.Questions.Count();
-                    MainForm.UserAnswers = new string[MainForm.QuestionCount];
-                    MainForm.NumberOfQuestion = $"{MainForm.CurrentQuestion + 1} / {MainForm.QuestionCount} questions";
+                    using (StreamReader streamReader = new StreamReader(defaulttestpath))
+                    {
+                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
+                        var obj = (List<QuestionBlock>)xmlSerializer.Deserialize(streamReader);
+                        MainForm.Questions = obj;
+                        MainForm.QuestionCount = MainForm.Questions.Count();
+                        MainForm.UserAnswers = new List<string>();
+                    }
                 }
+                #endregion
+
                 #region Question array declare
+
                 MainForm.QuestionControl = new List<QuestionControl>();
 
-                for (int i = 0; i < MainForm.QuestionCount; i++)
+                for (int i = 0; i < MainForm.Questions.Count; i++)
                 {
                     MainForm.QuestionControl.Add(new QuestionControl(MainForm));
                 }
+
                 #endregion
 
                 MainForm.Answercount = MainForm.Questions[MainForm.CurrentQuestion].Answers.Count();
                 MainForm.QuestionControl[MainForm.CurrentQuestion].LabelQuestion.Text = MainForm.Questions[MainForm.CurrentQuestion].Text;
                 MainForm.QuestionControl[MainForm.CurrentQuestion].Location = new Point(14, 35);
+                MainForm.NumberOfQuestion = $"{MainForm.CurrentQuestion + 1} / {MainForm.Questions.Count} questions";
+
+                for (int i = 0; i < MainForm.Questions.Count; i++)
+                {
+                    MainForm.UserAnswers.Add("");
+                }
 
                 MainForm.FirstQuestionAnswersInitialize();
-
                 MainForm.FourButtonInitialize();
-
                 MainForm.Controls.Add(MainForm.QuestionControl[MainForm.CurrentQuestion]);
+            }
+            else
+            {
+                customMessageBox.MessageText = "Please, select file";
+                customMessageBox.MessageTitle = "Warning";
+                customMessageBox.ShowDialog();
+            }
+                
+        }
+
+        private void ChooseQuestions_Load(object sender, EventArgs e)
+        {
+            List<string> paths = new List<string>();
+            List<string> filesname = new List<string>();
+
+            paths = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\EYEquiz").ToList<string>();
+
+            for (int i = 0; i < paths.Count(); i++)
+            {
+                filesname.Add(paths[i].Split('\\').Last());
+            }
+
+            imageList.Images.Add(Image.FromFile("iconxml.png"));
+
+            for (int i = 0; i < paths.Count(); i++)
+            {
+                listViewAllQuestions.Items.Add(filesname[i], 0);
+                listViewAllQuestions.ShowItemToolTips = true;
             }
         }
     }

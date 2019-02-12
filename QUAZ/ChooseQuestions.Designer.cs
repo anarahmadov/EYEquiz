@@ -28,30 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
+            this.listViewAllQuestions = new System.Windows.Forms.ListView();
+            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dateModified = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.size = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
+            this.label = new System.Windows.Forms.Label();
             this.txtboxQuestionCount = new MetroFramework.Controls.MetroTextBox();
             this.btnStart = new MetroFramework.Controls.MetroButton();
-            this.btnBack = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
-            // listView1
+            // listViewAllQuestions
             // 
-            this.listView1.Location = new System.Drawing.Point(21, 23);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(757, 335);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listViewAllQuestions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            this.listViewAllQuestions.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.name,
+            this.dateModified,
+            this.size,
+            this.type});
+            this.listViewAllQuestions.Location = new System.Drawing.Point(21, 23);
+            this.listViewAllQuestions.Name = "listViewAllQuestions";
+            this.listViewAllQuestions.Size = new System.Drawing.Size(757, 335);
+            this.listViewAllQuestions.StateImageList = this.imageList;
+            this.listViewAllQuestions.TabIndex = 0;
+            this.listViewAllQuestions.UseCompatibleStateImageBehavior = false;
+            this.listViewAllQuestions.View = System.Windows.Forms.View.Details;
             // 
-            // label1
+            // name
             // 
-            this.label1.ForeColor = System.Drawing.Color.DarkGray;
-            this.label1.Location = new System.Drawing.Point(22, 390);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Question Count";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.name.Text = "Name";
+            this.name.Width = 195;
+            // 
+            // dateModified
+            // 
+            this.dateModified.Text = "Date modifed";
+            this.dateModified.Width = 195;
+            // 
+            // size
+            // 
+            this.size.Text = "Size";
+            this.size.Width = 195;
+            // 
+            // type
+            // 
+            this.type.Text = "Type";
+            this.type.Width = 195;
+            // 
+            // imageList
+            // 
+            this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList.ImageSize = new System.Drawing.Size(50, 50);
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // label
+            // 
+            this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.ForeColor = System.Drawing.Color.DarkGray;
+            this.label.Location = new System.Drawing.Point(3, 390);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(100, 23);
+            this.label.TabIndex = 1;
+            this.label.Text = "Question count";
+            this.label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtboxQuestionCount
             // 
@@ -67,11 +107,13 @@
             this.txtboxQuestionCount.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtboxQuestionCount.CustomButton.UseSelectable = true;
             this.txtboxQuestionCount.CustomButton.Visible = false;
+            this.txtboxQuestionCount.ForeColor = System.Drawing.Color.White;
             this.txtboxQuestionCount.Lines = new string[0];
-            this.txtboxQuestionCount.Location = new System.Drawing.Point(128, 390);
+            this.txtboxQuestionCount.Location = new System.Drawing.Point(106, 390);
             this.txtboxQuestionCount.MaxLength = 32767;
             this.txtboxQuestionCount.Name = "txtboxQuestionCount";
             this.txtboxQuestionCount.PasswordChar = '\0';
+            this.txtboxQuestionCount.PromptText = "Question count";
             this.txtboxQuestionCount.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtboxQuestionCount.SelectedText = "";
             this.txtboxQuestionCount.SelectionLength = 0;
@@ -79,53 +121,55 @@
             this.txtboxQuestionCount.ShortcutsEnabled = true;
             this.txtboxQuestionCount.Size = new System.Drawing.Size(200, 23);
             this.txtboxQuestionCount.TabIndex = 2;
+            this.txtboxQuestionCount.UseCustomBackColor = true;
+            this.txtboxQuestionCount.UseCustomForeColor = true;
             this.txtboxQuestionCount.UseSelectable = true;
-            this.txtboxQuestionCount.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtboxQuestionCount.WaterMark = "Question count";
+            this.txtboxQuestionCount.WaterMarkColor = System.Drawing.Color.Gray;
             this.txtboxQuestionCount.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // btnStart
             // 
+            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.btnStart.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.btnStart.Location = new System.Drawing.Point(562, 374);
+            this.btnStart.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnStart.Location = new System.Drawing.Point(552, 374);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(216, 39);
+            this.btnStart.Size = new System.Drawing.Size(226, 39);
             this.btnStart.TabIndex = 3;
+            this.btnStart.TabStop = false;
             this.btnStart.Text = "Start exam";
+            this.btnStart.UseCustomBackColor = true;
+            this.btnStart.UseCustomForeColor = true;
             this.btnStart.UseSelectable = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(405, 374);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(113, 39);
-            this.btnBack.TabIndex = 4;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseSelectable = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // ChooseQuestions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.txtboxQuestionCount);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.label);
+            this.Controls.Add(this.listViewAllQuestions);
             this.Name = "ChooseQuestions";
             this.Size = new System.Drawing.Size(800, 426);
+            this.Load += new System.EventHandler(this.ChooseQuestions_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListView listViewAllQuestions;
+        private System.Windows.Forms.Label label;
         private MetroFramework.Controls.MetroTextBox txtboxQuestionCount;
         private MetroFramework.Controls.MetroButton btnStart;
-        private MetroFramework.Controls.MetroButton btnBack;
+        private System.Windows.Forms.ColumnHeader name;
+        private System.Windows.Forms.ColumnHeader dateModified;
+        private System.Windows.Forms.ColumnHeader size;
+        private System.Windows.Forms.ColumnHeader type;
+        private System.Windows.Forms.ImageList imageList;
     }
 }

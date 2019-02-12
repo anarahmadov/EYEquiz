@@ -19,7 +19,7 @@ namespace QUAZ
     {
         public List<QuestionBlock> Questions { get; set; }
         public List<QuestionControl> QuestionControl { get; set; }
-        public LogIn LoginView { get => logInView; set => logInView = value; }
+        public LogIn LoginView { get; set; }
         public AddQuestionOrGoExam _AddQuestionOrGoExam { get; set; }
         public AddQuestion _AddQuestion { get; set; }
         public ChooseQuestions _ChooseQuestions { get; set; }
@@ -36,12 +36,12 @@ namespace QUAZ
 
         public string NumberOfQuestion { get => numberOfQuestion.Text; set => numberOfQuestion.Text = value; }
 
-        public string[] UserAnswers { get; set; }
+        public List<string> UserAnswers { get; set; }
         public bool isClickSubmit { get; set; }
 
         public bool Dragging { get; set; }
         public Point StartPoint { get; set; }
-
+        
         public MainForm()
         {
             InitializeComponent();
@@ -50,16 +50,6 @@ namespace QUAZ
         public void FirstQuestionAnswersInitialize()
         {
             #region Answers initialize
-
-            //for (int i = 0; i < Answercount; i++)
-            //{
-            //    var correctvariant = new PictureBox();
-            //    correctvariant.Size = new Size(20, 20);
-            //    correctvariant.BorderStyle = BorderStyle.Fixed3D;
-            //    //correctvariant.Image = Image.FromFile();
-            //    //correctvariant.Visible = false;
-            //    QuestionControl[CurrentQuestion].Flow.Controls.Add(correctvariant);
-            //}
 
             for (int i = 0; i < Answercount; i++)
             {
@@ -138,127 +128,127 @@ namespace QUAZ
             #endregion
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            CurrentQuestion = 0;
+        //private void btnStart_Click(object sender, EventArgs e)
+        //{
+        //    CurrentQuestion = 0;
 
-            //initialize of QuestionControl[CurrentQuestion]
-            if (File.Exists("QuestionsXML.xml"))
-            {
-                using (StreamReader streamReader = new StreamReader("QuestionsXML.xml"))
-                {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
-                    var obj = (List<QuestionBlock>)xmlSerializer.Deserialize(streamReader);
-                    Questions = obj;
-                    QuestionCount = Questions.Count();
-                    UserAnswers = new string[QuestionCount];
-                    numberOfQuestion.Text = $"{CurrentQuestion + 1} / {QuestionCount} questions";
+        //    //initialize of QuestionControl[CurrentQuestion]
+        //    if (File.Exists("QuestionsXML.xml"))
+        //    {
+        //        using (StreamReader streamReader = new StreamReader("QuestionsXML.xml"))
+        //        {
+        //            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
+        //            var obj = (List<QuestionBlock>)xmlSerializer.Deserialize(streamReader);
+        //            Questions = obj;
+        //            QuestionCount = Questions.Count();
+        //            UserAnswers = new string[QuestionCount];
+        //            numberOfQuestion.Text = $"{CurrentQuestion + 1} / {QuestionCount} questions";
 
-                }
-                #region Question array declare
-                QuestionControl = new List<QuestionControl>();
+        //        }
+        //        #region Question array declare
+        //        QuestionControl = new List<QuestionControl>();
 
-                for (int i = 0; i < QuestionCount; i++)
-                {
-                    QuestionControl[i] = new QuestionControl(this);
-                }
-                #endregion
+        //        for (int i = 0; i < QuestionCount; i++)
+        //        {
+        //            QuestionControl[i] = new QuestionControl(this);
+        //        }
+        //        #endregion
 
-                Answercount = Questions[CurrentQuestion].Answers.Count();
-                QuestionControl[CurrentQuestion].LabelQuestion.Text = Questions[CurrentQuestion].Text;
-                QuestionControl[CurrentQuestion].Location = new Point(14, 35);
+        //        Answercount = Questions[CurrentQuestion].Answers.Count();
+        //        QuestionControl[CurrentQuestion].LabelQuestion.Text = Questions[CurrentQuestion].Text;
+        //        QuestionControl[CurrentQuestion].Location = new Point(14, 35);
 
-                #region Answers initialize
+        //        #region Answers initialize
 
-                for (int i = 0; i < Answercount; i++)
-                {
-                    var correctvariant = new PictureBox();
-                    correctvariant.Size = new Size(20, 20);
-                    correctvariant.Image = Image.FromFile("correction");
-                    //correctvariant.Visible = false;
-                    QuestionControl[CurrentQuestion].Flow.Controls.Add(correctvariant);
-                }
+        //        for (int i = 0; i < Answercount; i++)
+        //        {
+        //            var correctvariant = new PictureBox();
+        //            correctvariant.Size = new Size(20, 20);
+        //            correctvariant.Image = Image.FromFile("correction");
+        //            //correctvariant.Visible = false;
+        //            QuestionControl[CurrentQuestion].Flow.Controls.Add(correctvariant);
+        //        }
 
-                for (int i = 0; i < Answercount; i++)
-                {
-                    var variant = new MetroFramework.Controls.MetroRadioButton();
-                    variant.UseCustomForeColor = true;
-                    variant.ForeColor = Color.DarkGray;
-                    variant.Cursor = Cursors.Hand;
-                    variant.Style = MetroFramework.MetroColorStyle.Brown;
-                    variant.AutoSize = false;
-                    variant.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-                    variant.Text = Questions[CurrentQuestion].Answers[i].Text;
-                    variant.Size = new Size(700, 20);
-                    variant.UseCustomBackColor = true;
-                    variant.BackColor = Color.FromArgb(0, 0, 0, 0);
-                    variant.CheckedChanged += Answers_CheckedChanged;
-                    QuestionControl[CurrentQuestion].Flow.Controls.Add(variant);
-                }
+        //        for (int i = 0; i < Answercount; i++)
+        //        {
+        //            var variant = new MetroFramework.Controls.MetroRadioButton();
+        //            variant.UseCustomForeColor = true;
+        //            variant.ForeColor = Color.DarkGray;
+        //            variant.Cursor = Cursors.Hand;
+        //            variant.Style = MetroFramework.MetroColorStyle.Brown;
+        //            variant.AutoSize = false;
+        //            variant.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
+        //            variant.Text = Questions[CurrentQuestion].Answers[i].Text;
+        //            variant.Size = new Size(700, 20);
+        //            variant.UseCustomBackColor = true;
+        //            variant.BackColor = Color.FromArgb(0, 0, 0, 0);
+        //            variant.CheckedChanged += Answers_CheckedChanged;
+        //            QuestionControl[CurrentQuestion].Flow.Controls.Add(variant);
+        //        }
 
-                #endregion
+        //        #endregion
 
-                #region Four buttons initialize
-                BtnBack = new MetroFramework.Controls.MetroButton();
-                BtnAccept = new MetroFramework.Controls.MetroButton();
-                BtnNext = new MetroFramework.Controls.MetroButton();
-                BtnSubmit = new MetroFramework.Controls.MetroButton();
+        //        #region Four buttons initialize
+        //        BtnBack = new MetroFramework.Controls.MetroButton();
+        //        BtnAccept = new MetroFramework.Controls.MetroButton();
+        //        BtnNext = new MetroFramework.Controls.MetroButton();
+        //        BtnSubmit = new MetroFramework.Controls.MetroButton();
 
-                BtnSubmit.Size = new Size(150, 60);
-                BtnSubmit.Location = new Point(600, 415);
-                BtnSubmit.Text = "Submit";
-                BtnSubmit.Click += BtnSubmit_Click;
-                BtnSubmit.UseStyleColors = true;
-                BtnSubmit.UseCustomBackColor = true;
-                BtnSubmit.BackColor = Color.FromArgb(0, 0, 0, 0);
-                BtnSubmit.Style = MetroFramework.MetroColorStyle.Black;
-                BtnSubmit.TabStop = false;
+        //        BtnSubmit.Size = new Size(150, 60);
+        //        BtnSubmit.Location = new Point(600, 415);
+        //        BtnSubmit.Text = "Submit";
+        //        BtnSubmit.Click += BtnSubmit_Click;
+        //        BtnSubmit.UseStyleColors = true;
+        //        BtnSubmit.UseCustomBackColor = true;
+        //        BtnSubmit.BackColor = Color.FromArgb(0, 0, 0, 0);
+        //        BtnSubmit.Style = MetroFramework.MetroColorStyle.Black;
+        //        BtnSubmit.TabStop = false;
 
-                BtnBack.Size = new Size(130, 40);
-                BtnBack.Location = new Point(10, 429);
-                BtnBack.Text = "Back";
-                BtnBack.Click += BtnBack_Click;
-                BtnBack.UseStyleColors = true;
-                BtnBack.UseCustomBackColor = true;
-                BtnBack.BackColor = Color.FromArgb(0, 0, 0, 0);
-                BtnBack.Style = MetroFramework.MetroColorStyle.Black;
-                BtnBack.TabStop = false;
+        //        BtnBack.Size = new Size(130, 40);
+        //        BtnBack.Location = new Point(10, 429);
+        //        BtnBack.Text = "Back";
+        //        BtnBack.Click += BtnBack_Click;
+        //        BtnBack.UseStyleColors = true;
+        //        BtnBack.UseCustomBackColor = true;
+        //        BtnBack.BackColor = Color.FromArgb(0, 0, 0, 0);
+        //        BtnBack.Style = MetroFramework.MetroColorStyle.Black;
+        //        BtnBack.TabStop = false;
 
-                BtnAccept.Size = new Size(130, 40);
-                BtnAccept.Location = new Point(200, 429);
-                BtnAccept.Text = "Accept";
-                BtnAccept.Enabled = false;
-                BtnAccept.Click += BtnAccept_Click;
-                BtnAccept.UseStyleColors = true;
-                BtnAccept.UseCustomBackColor = true;
-                BtnAccept.BackColor = Color.FromArgb(0, 0, 0, 0);
-                BtnAccept.Style = MetroFramework.MetroColorStyle.Black;
-                BtnAccept.TabStop = false;
+        //        BtnAccept.Size = new Size(130, 40);
+        //        BtnAccept.Location = new Point(200, 429);
+        //        BtnAccept.Text = "Accept";
+        //        BtnAccept.Enabled = false;
+        //        BtnAccept.Click += BtnAccept_Click;
+        //        BtnAccept.UseStyleColors = true;
+        //        BtnAccept.UseCustomBackColor = true;
+        //        BtnAccept.BackColor = Color.FromArgb(0, 0, 0, 0);
+        //        BtnAccept.Style = MetroFramework.MetroColorStyle.Black;
+        //        BtnAccept.TabStop = false;
 
-                BtnNext.Size = new Size(130, 40);
-                BtnNext.Location = new Point(390, 429);
-                BtnNext.Text = "Next";
-                BtnNext.Click += BtnNext_Click;
-                BtnNext.UseStyleColors = true;
-                BtnNext.UseCustomBackColor = true;
-                BtnNext.BackColor = Color.FromArgb(0, 0, 0, 0);
-                BtnNext.Style = MetroFramework.MetroColorStyle.Black;
-                BtnNext.TabStop = false;
+        //        BtnNext.Size = new Size(130, 40);
+        //        BtnNext.Location = new Point(390, 429);
+        //        BtnNext.Text = "Next";
+        //        BtnNext.Click += BtnNext_Click;
+        //        BtnNext.UseStyleColors = true;
+        //        BtnNext.UseCustomBackColor = true;
+        //        BtnNext.BackColor = Color.FromArgb(0, 0, 0, 0);
+        //        BtnNext.Style = MetroFramework.MetroColorStyle.Black;
+        //        BtnNext.TabStop = false;
 
 
-                this.Controls.Add(BtnSubmit);
-                this.Controls.Add(BtnBack);
-                this.Controls.Add(BtnAccept);
-                this.Controls.Add(BtnNext);
-                #endregion
+        //        this.Controls.Add(BtnSubmit);
+        //        this.Controls.Add(BtnBack);
+        //        this.Controls.Add(BtnAccept);
+        //        this.Controls.Add(BtnNext);
+        //        #endregion
 
-                this.Controls.Add(QuestionControl[CurrentQuestion]);
-            }
-        }
+        //        this.Controls.Add(QuestionControl[CurrentQuestion]);
+        //    }
+        //}
 
         private void BtnSubmit_Click(object sender, EventArgs e)
         {
-            var dialogResult = MessageBox.Show("Are you sure ?", "Warning", MessageBoxButtons.OKCancel);
+            var dialogResult = System.Windows.Forms.MessageBox.Show("Are you sure ?", "Warning", MessageBoxButtons.OKCancel);
 
             if (dialogResult == DialogResult.OK)
             {
@@ -267,16 +257,16 @@ namespace QUAZ
                 #region Count corrects, wrongs or unanswereds
                 int correct = 0, wrong = 0, unanswered = 0;
 
-                for (int i = 0; i < QuestionCount; i++)
+                for (int i = 0; i < Questions.Count; i++)
                 {
-                    if (UserAnswers[i] == null)
+                    if (UserAnswers[i] == string.Empty)
                     {
                         if (QuestionControl[i].Flow.Controls.Count != 0)
                         {
                             var id = Questions[i].Answers.Find(x => x.IsCorrect == "Yes").id;
 
                             var a = QuestionControl[i].Flow.Controls.OfType<MetroFramework.Controls.MetroRadioButton>().ElementAt(id);
-                            (a as MetroFramework.Controls.MetroRadioButton).BackColor = Color.Green;
+                            (a as MetroFramework.Controls.MetroRadioButton).BackColor = Color.DimGray;
                         }
                             ++unanswered;
                     }
@@ -317,7 +307,7 @@ namespace QUAZ
                 QuestionControl[CurrentQuestion].Visible = false;
                 CurrentQuestion = 0;
                 QuestionControl[CurrentQuestion].Visible = true;
-                numberOfQuestion.Text = $"{CurrentQuestion + 1} / {QuestionCount} questions";
+                numberOfQuestion.Text = $"{CurrentQuestion + 1} / {Questions.Count} questions";
 
                 #region Disable All Answers
 
@@ -343,12 +333,12 @@ namespace QUAZ
 
         private void BtnNext_Click(object sender, EventArgs e)
         {
-            if (CurrentQuestion < QuestionCount - 1)
+            if (CurrentQuestion < Questions.Count - 1)
             {
                 QuestionControl[CurrentQuestion].Visible = false;
 
                 ++CurrentQuestion;
-                numberOfQuestion.Text = $"{CurrentQuestion + 1} / {QuestionCount} questions";
+                numberOfQuestion.Text = $"{CurrentQuestion + 1} / {Questions.Count} questions";
                 Answercount = Questions[CurrentQuestion].Answers.Count();
 
                 if (QuestionControl[CurrentQuestion].LabelQuestion.Text == string.Empty)
@@ -390,7 +380,7 @@ namespace QUAZ
                         var id = Questions[CurrentQuestion].Answers.Find(x => x.IsCorrect == "Yes").id;
 
                         var a = QuestionControl[CurrentQuestion].Flow.Controls.OfType<MetroFramework.Controls.MetroRadioButton>().ElementAt(id);
-                        (a as MetroFramework.Controls.MetroRadioButton).BackColor = Color.Green;
+                        (a as MetroFramework.Controls.MetroRadioButton).BackColor = Color.DimGray;
                     }
                     #endregion
 
@@ -454,7 +444,7 @@ namespace QUAZ
 
                 --CurrentQuestion;
 
-                numberOfQuestion.Text = $"{CurrentQuestion + 1} / {QuestionCount} questions";
+                numberOfQuestion.Text = $"{CurrentQuestion + 1} / {Questions.Count} questions";
 
                 #region Control each variant was check(acceptbutton enabled will true) or not?
 
@@ -557,9 +547,9 @@ namespace QUAZ
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            LoginView = new LogIn(this);
             LoginView.Location = new Point(0, 49);
-
-
+            this.Controls.Add(LoginView);
         }
 
     }

@@ -104,6 +104,18 @@
     <Compile Include="CustomMessageBox.Designer.cs">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditExam.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EditExam.Designer.cs">
+      <DependentUpon>EditExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditOrCreateExam.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EditOrCreateExam.Designer.cs">
+      <DependentUpon>EditOrCreateExam.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogIn.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -136,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditExam.resx">
+      <DependentUpon>EditExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditOrCreateExam.resx">
+      <DependentUpon>EditOrCreateExam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>

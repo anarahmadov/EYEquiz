@@ -25,13 +25,13 @@ namespace QUAZ
             this.Visible = false;
             if(MainForm._AddQuestion == null)
             {
-                MainForm._AddQuestion = new AddQuestion(MainForm);
-                MainForm._AddQuestion.Location = new Point(0, 49);
-                MainForm.Controls.Add(MainForm._AddQuestion);
+                MainForm._EditOrCreateExam = new EditOrCreateExam(MainForm);
+                MainForm._EditOrCreateExam.Location = new Point(0, 80);
+                MainForm.Controls.Add(MainForm._EditOrCreateExam);
             }
             else
             {
-                MainForm._AddQuestion.Visible = true;
+                MainForm._EditOrCreateExam.Visible = true;
             }
 
         }
@@ -42,7 +42,7 @@ namespace QUAZ
             if(MainForm._ChooseQuestions == null)
             {
                 MainForm._ChooseQuestions = new ChooseQuestions(MainForm);
-                MainForm._ChooseQuestions.Location = new Point(0, 49);
+                MainForm._ChooseQuestions.Location = new Point(0, 80);
                 MainForm.Controls.Add(MainForm._ChooseQuestions);
             }
             else

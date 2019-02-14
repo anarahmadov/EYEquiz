@@ -38,7 +38,7 @@
             this.labelQuestion.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.labelQuestion.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.labelQuestion.ForeColor = System.Drawing.Color.DarkGray;
-            this.labelQuestion.Location = new System.Drawing.Point(15, 71);
+            this.labelQuestion.Location = new System.Drawing.Point(15, 37);
             this.labelQuestion.Name = "labelQuestion";
             this.labelQuestion.Size = new System.Drawing.Size(738, 138);
             this.labelQuestion.TabIndex = 13;
@@ -51,9 +51,9 @@
             this.flowLayoutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.flowLayoutPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel.ForeColor = System.Drawing.Color.Black;
-            this.flowLayoutPanel.Location = new System.Drawing.Point(15, 237);
+            this.flowLayoutPanel.Location = new System.Drawing.Point(15, 201);
             this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(738, 149);
+            this.flowLayoutPanel.Size = new System.Drawing.Size(738, 204);
             this.flowLayoutPanel.TabIndex = 15;
             // 
             // QuestionControl
@@ -64,7 +64,7 @@
             this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.labelQuestion);
             this.Name = "QuestionControl";
-            this.Size = new System.Drawing.Size(766, 398);
+            this.Size = new System.Drawing.Size(766, 420);
             this.ResumeLayout(false);
 
         }

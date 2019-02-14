@@ -147,13 +147,14 @@ namespace QUAZ
             {
                 RadioButtonAnswers = new List<MetroFramework.Controls.MetroRadioButton>();
                 RadioButtonAnswersText = new List<MetroFramework.Controls.MetroTextBox>();
+
                 for (int i = 0, x = 30, y = 200; i < int.Parse(answerCount.Text); i++, y += 30)
                 {
                     RadioButtonAnswersText.Add(new MetroFramework.Controls.MetroTextBox());
                     RadioButtonAnswersText[i].Location = new Point(x + 20, y);
                     RadioButtonAnswersText[i].Size = new Size(400, 20);
-                    RadioButtonAnswersText[i].BackColor = Color.FromArgb(61, 61, 61);
                     RadioButtonAnswersText[i].UseCustomBackColor = true;
+                    RadioButtonAnswersText[i].BackColor = Color.FromArgb(61, 61, 61);
                     RadioButtonAnswersText[i].UseCustomForeColor = true;
                     RadioButtonAnswersText[i].ForeColor = Color.White;
                     this.Controls.Add(RadioButtonAnswersText[i]);

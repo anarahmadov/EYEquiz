@@ -97,7 +97,7 @@
             // 
             this.labelPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPassword.ForeColor = System.Drawing.Color.DarkGray;
-            this.labelPassword.Location = new System.Drawing.Point(148, 210);
+            this.labelPassword.Location = new System.Drawing.Point(152, 236);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(132, 23);
             this.labelPassword.TabIndex = 26;
@@ -145,7 +145,7 @@
             // 
             this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelUsername.ForeColor = System.Drawing.Color.DarkGray;
-            this.labelUsername.Location = new System.Drawing.Point(158, 132);
+            this.labelUsername.Location = new System.Drawing.Point(162, 158);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(73, 23);
             this.labelUsername.TabIndex = 27;
@@ -169,7 +169,7 @@
             this.metroTextBox1.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.metroTextBox1.ForeColor = System.Drawing.Color.White;
             this.metroTextBox1.Lines = new string[0];
-            this.metroTextBox1.Location = new System.Drawing.Point(296, 172);
+            this.metroTextBox1.Location = new System.Drawing.Point(300, 198);
             this.metroTextBox1.MaxLength = 32767;
             this.metroTextBox1.Name = "metroTextBox1";
             this.metroTextBox1.PasswordChar = '*';
@@ -206,7 +206,7 @@
             this.metroTextBox3.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.metroTextBox3.ForeColor = System.Drawing.Color.White;
             this.metroTextBox3.Lines = new string[0];
-            this.metroTextBox3.Location = new System.Drawing.Point(296, 132);
+            this.metroTextBox3.Location = new System.Drawing.Point(300, 158);
             this.metroTextBox3.MaxLength = 32767;
             this.metroTextBox3.Name = "metroTextBox3";
             this.metroTextBox3.PasswordChar = '\0';
@@ -230,7 +230,7 @@
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.DarkGray;
-            this.label1.Location = new System.Drawing.Point(158, 172);
+            this.label1.Location = new System.Drawing.Point(162, 198);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 23);
             this.label1.TabIndex = 26;
@@ -254,7 +254,7 @@
             this.metroTextBox4.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.metroTextBox4.ForeColor = System.Drawing.Color.White;
             this.metroTextBox4.Lines = new string[0];
-            this.metroTextBox4.Location = new System.Drawing.Point(296, 210);
+            this.metroTextBox4.Location = new System.Drawing.Point(300, 236);
             this.metroTextBox4.MaxLength = 32767;
             this.metroTextBox4.Name = "metroTextBox4";
             this.metroTextBox4.PasswordChar = '*';
@@ -279,7 +279,7 @@
             this.btnRegister.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.btnRegister.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.btnRegister.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnRegister.Location = new System.Drawing.Point(295, 267);
+            this.btnRegister.Location = new System.Drawing.Point(299, 293);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(251, 80);
             this.btnRegister.TabIndex = 29;

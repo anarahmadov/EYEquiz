@@ -27,38 +27,8 @@ namespace QUAZ
             this.Visible = false;
 
             MainForm._AddQuestionOrGoExam = new AddQuestionOrGoExam(MainForm);
-            MainForm._AddQuestionOrGoExam.Location = new Point(0, 49);
-            MainForm.Controls.Add(MainForm._AddQuestionOrGoExam);
-
-            #region Old code
-            //MainForm._AddQuestionOrGoExam = new AddQuestionOrGoExam(MainForm);
-            //MainForm._AddQuestionOrGoExam.Location = new Point(0, 49);
-            //MainForm.Controls.Add(MainForm._AddQuestionOrGoExam);
-
-            //MainForm.CurrentQuestion = 0;
-
-            ////initialize of QuestionControl[CurrentQuestion]
-            //if (File.Exists("QuestionsXML.xml"))
-            //{
-            //    using (StreamReader streamReader = new StreamReader("QuestionsXML.xml"))
-            //    {
-            //        XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
-            //        var obj = (List<QuestionBlock>)xmlSerializer.Deserialize(streamReader);
-            //        MainForm.Questions = obj;
-            //        MainForm.QuestionCount = MainForm.Questions.Count();
-            //        MainForm.UserAnswers = new List<string>();                    
-            //    }
-            //    #region Question array declare
-            //    //MainForm.QuestionControl = new List<QuestionControl>();
-
-            //    //for (int i = 0; i < MainForm.QuestionCount; i++)
-            //    //{
-            //    //    MainForm.QuestionControl.Add(new QuestionControl(MainForm));
-            //    //}
-            //    #endregion
-
-            //}
-            #endregion
+            MainForm._AddQuestionOrGoExam.Location = new Point(0, 60);
+            MainForm.Controls.Add(MainForm._AddQuestionOrGoExam);      
 
             var currentpath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\EYEquiz";
 

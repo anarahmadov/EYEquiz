@@ -60,7 +60,7 @@ namespace QUAZ
 
                 MainForm.Answercount = MainForm.Questions[MainForm.CurrentQuestion].Answers.Count();
                 MainForm.QuestionControl[MainForm.CurrentQuestion].LabelQuestion.Text = MainForm.Questions[MainForm.CurrentQuestion].Text;
-                MainForm.QuestionControl[MainForm.CurrentQuestion].Location = new Point(14, 35);
+                MainForm.QuestionControl[MainForm.CurrentQuestion].Location = new Point(14, 70);
                 MainForm.NumberOfQuestion = $"{MainForm.CurrentQuestion + 1} / {MainForm.Questions.Count} questions";
 
                 for (int i = 0; i < MainForm.Questions.Count; i++)
@@ -98,6 +98,8 @@ namespace QUAZ
             for (int i = 0; i < paths.Count(); i++)
             {
                 listViewAllQuestions.Items.Add(filesname[i], 0);
+                listViewAllQuestions.Items[i].ForeColor = Color.DarkGray;
+                //listViewAllQuestions.Items[i].
                 listViewAllQuestions.ShowItemToolTips = true;
             }
         }

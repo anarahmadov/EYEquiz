@@ -70,6 +70,7 @@
             // btnOk
             // 
             this.btnOk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOk.ForeColor = System.Drawing.Color.DarkGray;
             this.btnOk.Location = new System.Drawing.Point(80, 88);
             this.btnOk.Name = "btnOk";

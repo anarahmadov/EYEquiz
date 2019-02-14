@@ -48,8 +48,11 @@
             this.dateModified,
             this.size,
             this.type});
+            this.listViewAllQuestions.HideSelection = false;
+            this.listViewAllQuestions.LabelEdit = true;
             this.listViewAllQuestions.Location = new System.Drawing.Point(21, 23);
             this.listViewAllQuestions.Name = "listViewAllQuestions";
+            this.listViewAllQuestions.ShowItemToolTips = true;
             this.listViewAllQuestions.Size = new System.Drawing.Size(757, 335);
             this.listViewAllQuestions.StateImageList = this.imageList;
             this.listViewAllQuestions.TabIndex = 0;

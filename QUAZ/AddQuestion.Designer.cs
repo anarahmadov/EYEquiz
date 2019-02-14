@@ -96,9 +96,9 @@
             // 
             // 
             this.answerCount.CustomButton.Image = null;
-            this.answerCount.CustomButton.Location = new System.Drawing.Point(143, 1);
+            this.answerCount.CustomButton.Location = new System.Drawing.Point(141, 1);
             this.answerCount.CustomButton.Name = "";
-            this.answerCount.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.answerCount.CustomButton.Size = new System.Drawing.Size(23, 23);
             this.answerCount.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.answerCount.CustomButton.TabIndex = 1;
             this.answerCount.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -135,7 +135,7 @@
             this.labelQuestionCount.Name = "labelQuestionCount";
             this.labelQuestionCount.Size = new System.Drawing.Size(100, 23);
             this.labelQuestionCount.TabIndex = 5;
-            this.labelQuestionCount.Text = "Question Count";
+            this.labelQuestionCount.Text = "Question count";
             this.labelQuestionCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelQuestionTExt
@@ -146,7 +146,7 @@
             this.labelQuestionTExt.Name = "labelQuestionTExt";
             this.labelQuestionTExt.Size = new System.Drawing.Size(100, 23);
             this.labelQuestionTExt.TabIndex = 5;
-            this.labelQuestionTExt.Text = "Question Text";
+            this.labelQuestionTExt.Text = "Question text";
             this.labelQuestionTExt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // AddQuestion

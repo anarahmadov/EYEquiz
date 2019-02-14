@@ -39,7 +39,7 @@
             this.btnAddQuestions.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.btnAddQuestions.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.btnAddQuestions.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnAddQuestions.Location = new System.Drawing.Point(248, 149);
+            this.btnAddQuestions.Location = new System.Drawing.Point(246, 135);
             this.btnAddQuestions.Name = "btnAddQuestions";
             this.btnAddQuestions.Size = new System.Drawing.Size(304, 39);
             this.btnAddQuestions.TabIndex = 0;
@@ -55,7 +55,7 @@
             this.btnGoExam.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.btnGoExam.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.btnGoExam.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnGoExam.Location = new System.Drawing.Point(248, 213);
+            this.btnGoExam.Location = new System.Drawing.Point(246, 199);
             this.btnGoExam.Name = "btnGoExam";
             this.btnGoExam.Size = new System.Drawing.Size(304, 39);
             this.btnGoExam.TabIndex = 0;
@@ -69,7 +69,7 @@
             // 
             this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.btnLogOut.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnLogOut.Location = new System.Drawing.Point(323, 314);
+            this.btnLogOut.Location = new System.Drawing.Point(319, 361);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(158, 62);
             this.btnLogOut.TabIndex = 1;

@@ -43,7 +43,7 @@
             this.btnAddQuestions.Name = "btnAddQuestions";
             this.btnAddQuestions.Size = new System.Drawing.Size(304, 39);
             this.btnAddQuestions.TabIndex = 0;
-            this.btnAddQuestions.Text = "Add Questions";
+            this.btnAddQuestions.Text = "Edit or create exam";
             this.btnAddQuestions.UseCustomBackColor = true;
             this.btnAddQuestions.UseCustomForeColor = true;
             this.btnAddQuestions.UseSelectable = true;
@@ -67,9 +67,11 @@
             // 
             // btnLogOut
             // 
-            this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.btnLogOut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            this.btnLogOut.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.btnLogOut.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.btnLogOut.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnLogOut.Location = new System.Drawing.Point(319, 361);
+            this.btnLogOut.Location = new System.Drawing.Point(320, 349);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(158, 62);
             this.btnLogOut.TabIndex = 1;

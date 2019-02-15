@@ -1,6 +1,6 @@
 ﻿namespace QUAZ
 {
-    partial class AddQuestion
+    partial class CreateExam
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,21 +30,23 @@
         {
             this.txtboxQuestion = new System.Windows.Forms.RichTextBox();
             this.btnAdd = new MetroFramework.Controls.MetroButton();
-            this.listboxQuestions = new System.Windows.Forms.ListBox();
             this.btnBack = new MetroFramework.Controls.MetroButton();
             this.answerCount = new MetroFramework.Controls.MetroTextBox();
             this.labelQuestionCount = new System.Windows.Forms.Label();
             this.labelQuestionTExt = new System.Windows.Forms.Label();
+            this.btnSave = new MetroFramework.Controls.MetroButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtboxQuestion
             // 
             this.txtboxQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
             this.txtboxQuestion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtboxQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtboxQuestion.ForeColor = System.Drawing.Color.White;
             this.txtboxQuestion.Location = new System.Drawing.Point(29, 32);
             this.txtboxQuestion.Name = "txtboxQuestion";
-            this.txtboxQuestion.Size = new System.Drawing.Size(448, 90);
+            this.txtboxQuestion.Size = new System.Drawing.Size(742, 90);
             this.txtboxQuestion.TabIndex = 0;
             this.txtboxQuestion.Text = "";
             // 
@@ -52,9 +54,9 @@
             // 
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.btnAdd.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnAdd.Location = new System.Drawing.Point(29, 360);
+            this.btnAdd.Location = new System.Drawing.Point(29, 371);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(448, 51);
+            this.btnAdd.Size = new System.Drawing.Size(151, 40);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.TabStop = false;
             this.btnAdd.Text = "Add";
@@ -63,28 +65,17 @@
             this.btnAdd.UseSelectable = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // listboxQuestions
-            // 
-            this.listboxQuestions.AllowDrop = true;
-            this.listboxQuestions.BackColor = System.Drawing.Color.DarkGray;
-            this.listboxQuestions.FormattingEnabled = true;
-            this.listboxQuestions.Location = new System.Drawing.Point(497, 17);
-            this.listboxQuestions.Name = "listboxQuestions";
-            this.listboxQuestions.Size = new System.Drawing.Size(289, 329);
-            this.listboxQuestions.TabIndex = 2;
-            this.listboxQuestions.DragDrop += new System.Windows.Forms.DragEventHandler(this.listboxQuestions_DragDrop);
-            this.listboxQuestions.DragEnter += new System.Windows.Forms.DragEventHandler(this.listboxQuestions_DragEnter);
-            // 
             // btnBack
             // 
-            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+            this.btnBack.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.btnBack.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnBack.Location = new System.Drawing.Point(497, 360);
+            this.btnBack.Location = new System.Drawing.Point(585, 358);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(289, 51);
+            this.btnBack.Size = new System.Drawing.Size(199, 65);
             this.btnBack.TabIndex = 3;
             this.btnBack.TabStop = false;
-            this.btnBack.Text = "Back";
+            this.btnBack.Text = "BACK";
             this.btnBack.UseCustomBackColor = true;
             this.btnBack.UseCustomForeColor = true;
             this.btnBack.UseSelectable = true;
@@ -118,6 +109,7 @@
             this.answerCount.SelectionStart = 0;
             this.answerCount.ShortcutsEnabled = true;
             this.answerCount.Size = new System.Drawing.Size(165, 25);
+            this.answerCount.Style = MetroFramework.MetroColorStyle.White;
             this.answerCount.TabIndex = 4;
             this.answerCount.UseCustomBackColor = true;
             this.answerCount.UseCustomForeColor = true;
@@ -149,21 +141,48 @@
             this.labelQuestionTExt.Text = "Question text";
             this.labelQuestionTExt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // AddQuestion
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.btnSave.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnSave.Location = new System.Drawing.Point(202, 371);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(165, 40);
+            this.btnSave.TabIndex = 1;
+            this.btnSave.TabStop = false;
+            this.btnSave.Text = "Save ";
+            this.btnSave.UseCustomBackColor = true;
+            this.btnSave.UseCustomForeColor = true;
+            this.btnSave.UseSelectable = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.DarkGray;
+            this.label1.Location = new System.Drawing.Point(343, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Question text";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CreateExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.labelQuestionTExt);
             this.Controls.Add(this.labelQuestionCount);
             this.Controls.Add(this.answerCount);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.listboxQuestions);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtboxQuestion);
-            this.Name = "AddQuestion";
+            this.Name = "CreateExam";
             this.Size = new System.Drawing.Size(800, 426);
-            this.Load += new System.EventHandler(this.AddQuestion_Load);
+            this.Load += new System.EventHandler(this.CreateExam_Load);
             this.ResumeLayout(false);
 
         }
@@ -172,10 +191,11 @@
 
         private System.Windows.Forms.RichTextBox txtboxQuestion;
         private MetroFramework.Controls.MetroButton btnAdd;
-        private System.Windows.Forms.ListBox listboxQuestions;
         private MetroFramework.Controls.MetroButton btnBack;
         private MetroFramework.Controls.MetroTextBox answerCount;
         private System.Windows.Forms.Label labelQuestionCount;
         private System.Windows.Forms.Label labelQuestionTExt;
+        private MetroFramework.Controls.MetroButton btnSave;
+        private System.Windows.Forms.Label label1;
     }
 }

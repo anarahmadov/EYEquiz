@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnPrevius = new MetroFramework.Controls.MetroButton();
+            this.btnPreviuos = new MetroFramework.Controls.MetroButton();
             this.btnAddQuestion = new MetroFramework.Controls.MetroButton();
             this.btnNext = new MetroFramework.Controls.MetroButton();
             this.txtboxQuestionText = new MetroFramework.Controls.MetroTextBox();
@@ -36,30 +36,32 @@
             this.allRadiobuttons = new System.Windows.Forms.FlowLayoutPanel();
             this.allTextbox = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSave = new MetroFramework.Controls.MetroButton();
+            this.btnRemoveQuestion = new MetroFramework.Controls.MetroButton();
+            this.btnSaveAs = new MetroFramework.Controls.MetroButton();
             this.SuspendLayout();
             // 
-            // btnPrevius
+            // btnPreviuos
             // 
-            this.btnPrevius.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            this.btnPrevius.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnPrevius.Location = new System.Drawing.Point(170, 371);
-            this.btnPrevius.Name = "btnPrevius";
-            this.btnPrevius.Size = new System.Drawing.Size(116, 41);
-            this.btnPrevius.TabIndex = 0;
-            this.btnPrevius.TabStop = false;
-            this.btnPrevius.Text = "Previus";
-            this.btnPrevius.UseCustomBackColor = true;
-            this.btnPrevius.UseCustomForeColor = true;
-            this.btnPrevius.UseSelectable = true;
-            this.btnPrevius.Click += new System.EventHandler(this.btnPrevius_Click);
+            this.btnPreviuos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
+            this.btnPreviuos.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnPreviuos.Location = new System.Drawing.Point(156, 361);
+            this.btnPreviuos.Name = "btnPreviuos";
+            this.btnPreviuos.Size = new System.Drawing.Size(116, 41);
+            this.btnPreviuos.TabIndex = 0;
+            this.btnPreviuos.TabStop = false;
+            this.btnPreviuos.Text = "Previuos";
+            this.btnPreviuos.UseCustomBackColor = true;
+            this.btnPreviuos.UseCustomForeColor = true;
+            this.btnPreviuos.UseSelectable = true;
+            this.btnPreviuos.Click += new System.EventHandler(this.btnPrevius_Click);
             // 
             // btnAddQuestion
             // 
             this.btnAddQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.btnAddQuestion.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnAddQuestion.Location = new System.Drawing.Point(19, 363);
+            this.btnAddQuestion.Location = new System.Drawing.Point(13, 346);
             this.btnAddQuestion.Name = "btnAddQuestion";
-            this.btnAddQuestion.Size = new System.Drawing.Size(116, 60);
+            this.btnAddQuestion.Size = new System.Drawing.Size(116, 35);
             this.btnAddQuestion.TabIndex = 0;
             this.btnAddQuestion.TabStop = false;
             this.btnAddQuestion.Text = "Add new question";
@@ -70,9 +72,9 @@
             // 
             // btnNext
             // 
-            this.btnNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.btnNext.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(21)))), ((int)(((byte)(21)))));
             this.btnNext.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnNext.Location = new System.Drawing.Point(322, 371);
+            this.btnNext.Location = new System.Drawing.Point(314, 361);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(116, 41);
             this.btnNext.TabIndex = 0;
@@ -102,6 +104,7 @@
             this.txtboxQuestionText.Lines = new string[0];
             this.txtboxQuestionText.Location = new System.Drawing.Point(27, 13);
             this.txtboxQuestionText.MaxLength = 32767;
+            this.txtboxQuestionText.Multiline = true;
             this.txtboxQuestionText.Name = "txtboxQuestionText";
             this.txtboxQuestionText.PasswordChar = '\0';
             this.txtboxQuestionText.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -110,7 +113,9 @@
             this.txtboxQuestionText.SelectionStart = 0;
             this.txtboxQuestionText.ShortcutsEnabled = true;
             this.txtboxQuestionText.Size = new System.Drawing.Size(750, 100);
+            this.txtboxQuestionText.Style = MetroFramework.MetroColorStyle.Silver;
             this.txtboxQuestionText.TabIndex = 1;
+            this.txtboxQuestionText.TabStop = false;
             this.txtboxQuestionText.UseCustomBackColor = true;
             this.txtboxQuestionText.UseCustomForeColor = true;
             this.txtboxQuestionText.UseSelectable = true;
@@ -121,7 +126,7 @@
             // 
             this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.btnBack.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnBack.Location = new System.Drawing.Point(624, 363);
+            this.btnBack.Location = new System.Drawing.Point(606, 371);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(153, 52);
             this.btnBack.TabIndex = 0;
@@ -152,9 +157,9 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.btnSave.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnSave.Location = new System.Drawing.Point(458, 377);
+            this.btnSave.Location = new System.Drawing.Point(464, 330);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(153, 35);
+            this.btnSave.Size = new System.Drawing.Size(116, 92);
             this.btnSave.TabIndex = 0;
             this.btnSave.TabStop = false;
             this.btnSave.Text = "Save";
@@ -162,6 +167,36 @@
             this.btnSave.UseCustomForeColor = true;
             this.btnSave.UseSelectable = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnRemoveQuestion
+            // 
+            this.btnRemoveQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.btnRemoveQuestion.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnRemoveQuestion.Location = new System.Drawing.Point(13, 387);
+            this.btnRemoveQuestion.Name = "btnRemoveQuestion";
+            this.btnRemoveQuestion.Size = new System.Drawing.Size(116, 35);
+            this.btnRemoveQuestion.TabIndex = 0;
+            this.btnRemoveQuestion.TabStop = false;
+            this.btnRemoveQuestion.Text = "Remove question";
+            this.btnRemoveQuestion.UseCustomBackColor = true;
+            this.btnRemoveQuestion.UseCustomForeColor = true;
+            this.btnRemoveQuestion.UseSelectable = true;
+            this.btnRemoveQuestion.Click += new System.EventHandler(this.btnRemoveQuestion_Click);
+            // 
+            // btnSaveAs
+            // 
+            this.btnSaveAs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
+            this.btnSaveAs.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnSaveAs.Location = new System.Drawing.Point(606, 330);
+            this.btnSaveAs.Name = "btnSaveAs";
+            this.btnSaveAs.Size = new System.Drawing.Size(153, 35);
+            this.btnSaveAs.TabIndex = 0;
+            this.btnSaveAs.TabStop = false;
+            this.btnSaveAs.Text = "Save as";
+            this.btnSaveAs.UseCustomBackColor = true;
+            this.btnSaveAs.UseCustomForeColor = true;
+            this.btnSaveAs.UseSelectable = true;
+            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
             // EditExam
             // 
@@ -173,9 +208,11 @@
             this.Controls.Add(this.txtboxQuestionText);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.btnSaveAs);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnRemoveQuestion);
             this.Controls.Add(this.btnAddQuestion);
-            this.Controls.Add(this.btnPrevius);
+            this.Controls.Add(this.btnPreviuos);
             this.Name = "EditExam";
             this.Size = new System.Drawing.Size(800, 426);
             this.Load += new System.EventHandler(this.EditExam_Load);
@@ -185,7 +222,7 @@
 
         #endregion
 
-        private MetroFramework.Controls.MetroButton btnPrevius;
+        private MetroFramework.Controls.MetroButton btnPreviuos;
         private MetroFramework.Controls.MetroButton btnAddQuestion;
         private MetroFramework.Controls.MetroButton btnNext;
         private MetroFramework.Controls.MetroTextBox txtboxQuestionText;
@@ -193,5 +230,7 @@
         private System.Windows.Forms.FlowLayoutPanel allRadiobuttons;
         private System.Windows.Forms.FlowLayoutPanel allTextbox;
         private MetroFramework.Controls.MetroButton btnSave;
+        private MetroFramework.Controls.MetroButton btnRemoveQuestion;
+        private MetroFramework.Controls.MetroButton btnSaveAs;
     }
 }

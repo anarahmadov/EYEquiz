@@ -81,6 +81,7 @@
             this.btnOk.UseCustomBackColor = true;
             this.btnOk.UseCustomForeColor = true;
             this.btnOk.UseSelectable = true;
+            this.btnOk.Visible = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // labelMessageText
@@ -90,7 +91,7 @@
             this.labelMessageText.Name = "labelMessageText";
             this.labelMessageText.Size = new System.Drawing.Size(210, 36);
             this.labelMessageText.TabIndex = 2;
-            this.labelMessageText.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelMessageText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelMessageText.UseCustomBackColor = true;
             this.labelMessageText.UseCustomForeColor = true;
             this.labelMessageText.WrapToLine = true;

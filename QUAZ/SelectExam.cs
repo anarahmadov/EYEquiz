@@ -12,12 +12,12 @@ using System.Xml.Serialization;
 
 namespace QUAZ
 {
-    public partial class ChooseQuestions : UserControl
+    public partial class SelectExam : UserControl
     {
         MainForm MainForm;
-        CustomMessageBox customMessageBox = new CustomMessageBox();
+        CustomMessageBox customMessageBox;
 
-        public ChooseQuestions(MainForm mainForm)
+        public SelectExam(MainForm mainForm)
         {
             MainForm = mainForm;
             InitializeComponent();
@@ -29,6 +29,8 @@ namespace QUAZ
             {
                 this.Visible = false;
                 MainForm.CurrentQuestion = 0;
+
+
 
                 #region Deserialize file that selected in listview
                 var defaulttestpath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + $@"\EYEquiz\{listViewAllQuestions.SelectedItems[0].Text}";
@@ -74,6 +76,7 @@ namespace QUAZ
             }
             else
             {
+                customMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
                 customMessageBox.MessageText = "Please, select file";
                 customMessageBox.MessageTitle = "Warning";
                 customMessageBox.ShowDialog();
@@ -81,7 +84,7 @@ namespace QUAZ
                 
         }
 
-        private void ChooseQuestions_Load(object sender, EventArgs e)
+        private void SelectExam_Load(object sender, EventArgs e)
         {
             List<string> paths = new List<string>();
             List<string> filesname = new List<string>();
@@ -93,13 +96,10 @@ namespace QUAZ
                 filesname.Add(paths[i].Split('\\').Last());
             }
 
-            imageList.Images.Add(Image.FromFile("iconxml.png"));
-
             for (int i = 0; i < paths.Count(); i++)
             {
                 listViewAllQuestions.Items.Add(filesname[i], 0);
                 listViewAllQuestions.Items[i].ForeColor = Color.DarkGray;
-                //listViewAllQuestions.Items[i].
                 listViewAllQuestions.ShowItemToolTips = true;
             }
         }

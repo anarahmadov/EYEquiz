@@ -37,9 +37,11 @@
             this.topPanel = new MetroFramework.Controls.MetroPanel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelNameApp = new MetroFramework.Controls.MetroLabel();
             this.statusStrip.SuspendLayout();
+            this.topPanel.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,6 +105,7 @@
             // 
             this.topPanel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.topPanel.BackColor = System.Drawing.Color.Black;
+            this.topPanel.Controls.Add(this.labelNameApp);
             this.topPanel.HorizontalScrollbarBarColor = true;
             this.topPanel.HorizontalScrollbarHighlightOnWheel = false;
             this.topPanel.HorizontalScrollbarSize = 10;
@@ -121,7 +124,7 @@
             // menuStrip
             // 
             this.menuStrip.AllowItemReorder = true;
-            this.menuStrip.BackColor = System.Drawing.Color.LightGray;
+            this.menuStrip.BackColor = System.Drawing.Color.Gray;
             this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
@@ -133,23 +136,38 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem});
+            this.saveItem,
+            this.saveAsItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // saveToolStripMenuItem
+            // saveItem
             // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveToolStripMenuItem.Text = "Save ";
+            this.saveItem.Name = "saveItem";
+            this.saveItem.Size = new System.Drawing.Size(180, 22);
+            this.saveItem.Text = "Save ";
+            this.saveItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // saveAsToolStripMenuItem
+            // saveAsItem
             // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.saveAsToolStripMenuItem.Text = "Save as..";
+            this.saveAsItem.Name = "saveAsItem";
+            this.saveAsItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsItem.Text = "Save as..";
+            // 
+            // labelNameApp
+            // 
+            this.labelNameApp.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.labelNameApp.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.labelNameApp.ForeColor = System.Drawing.Color.Silver;
+            this.labelNameApp.Location = new System.Drawing.Point(28, 9);
+            this.labelNameApp.Name = "labelNameApp";
+            this.labelNameApp.Size = new System.Drawing.Size(145, 25);
+            this.labelNameApp.TabIndex = 2;
+            this.labelNameApp.Text = "EYEquiz";
+            this.labelNameApp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelNameApp.UseCustomBackColor = true;
+            this.labelNameApp.UseCustomForeColor = true;
             // 
             // MainForm
             // 
@@ -170,6 +188,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            this.topPanel.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -186,8 +205,9 @@
         private MetroFramework.Controls.MetroPanel topPanel;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsItem;
+        private MetroFramework.Controls.MetroLabel labelNameApp;
     }
 }
 

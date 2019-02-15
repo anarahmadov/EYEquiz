@@ -1,6 +1,6 @@
 ﻿namespace QUAZ
 {
-    partial class ChooseQuestions
+    partial class SelectExam
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectExam));
             this.listViewAllQuestions = new System.Windows.Forms.ListView();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dateModified = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,7 +43,7 @@
             // 
             // listViewAllQuestions
             // 
-            this.listViewAllQuestions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
+            this.listViewAllQuestions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.listViewAllQuestions.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.name,
             this.dateModified,
@@ -50,14 +51,13 @@
             this.type});
             this.listViewAllQuestions.HideSelection = false;
             this.listViewAllQuestions.LabelEdit = true;
+            this.listViewAllQuestions.LargeImageList = this.imageList;
             this.listViewAllQuestions.Location = new System.Drawing.Point(21, 23);
             this.listViewAllQuestions.Name = "listViewAllQuestions";
             this.listViewAllQuestions.ShowItemToolTips = true;
             this.listViewAllQuestions.Size = new System.Drawing.Size(757, 335);
-            this.listViewAllQuestions.StateImageList = this.imageList;
             this.listViewAllQuestions.TabIndex = 0;
             this.listViewAllQuestions.UseCompatibleStateImageBehavior = false;
-            this.listViewAllQuestions.View = System.Windows.Forms.View.Details;
             // 
             // name
             // 
@@ -81,9 +81,9 @@
             // 
             // imageList
             // 
-            this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList.ImageSize = new System.Drawing.Size(50, 50);
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
             this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "xml.png");
             // 
             // label
             // 
@@ -123,6 +123,7 @@
             this.txtboxQuestionCount.SelectionStart = 0;
             this.txtboxQuestionCount.ShortcutsEnabled = true;
             this.txtboxQuestionCount.Size = new System.Drawing.Size(200, 23);
+            this.txtboxQuestionCount.Style = MetroFramework.MetroColorStyle.White;
             this.txtboxQuestionCount.TabIndex = 2;
             this.txtboxQuestionCount.UseCustomBackColor = true;
             this.txtboxQuestionCount.UseCustomForeColor = true;
@@ -134,7 +135,8 @@
             // btnStart
             // 
             this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            this.btnStart.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.btnStart.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.btnStart.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.btnStart.ForeColor = System.Drawing.Color.DarkGray;
             this.btnStart.Location = new System.Drawing.Point(552, 374);
             this.btnStart.Name = "btnStart";
@@ -147,7 +149,7 @@
             this.btnStart.UseSelectable = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // ChooseQuestions
+            // SelectExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -156,9 +158,9 @@
             this.Controls.Add(this.txtboxQuestionCount);
             this.Controls.Add(this.label);
             this.Controls.Add(this.listViewAllQuestions);
-            this.Name = "ChooseQuestions";
+            this.Name = "SelectExam";
             this.Size = new System.Drawing.Size(800, 426);
-            this.Load += new System.EventHandler(this.ChooseQuestions_Load);
+            this.Load += new System.EventHandler(this.SelectExam_Load);
             this.ResumeLayout(false);
 
         }

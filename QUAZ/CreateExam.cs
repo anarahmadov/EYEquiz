@@ -12,7 +12,7 @@ using System.Xml.Serialization;
 
 namespace QUAZ
 {
-    public partial class AddQuestion : UserControl
+    public partial class CreateExam : UserControl
     {
         public List<MetroFramework.Controls.MetroRadioButton> RadioButtonAnswers { get; set; }
         public List<MetroFramework.Controls.MetroTextBox> RadioButtonAnswersText { get; set; }
@@ -21,12 +21,15 @@ namespace QUAZ
         public string QuestionText { get => txtboxQuestion.Text; set => txtboxQuestion.Text = value; }
         public string IsCorrectVariant { get; set; }
 
+        public List<QuestionBlock> Questions { get; set; }
+
         public List<Answer> _Answers { get; set; }
 
-        CustomMessageBox customMessageBox = new CustomMessageBox();
+        CustomMessageBox customMessageBox;
+        SimpleForm SimpleForm;
         MainForm MainForm;
 
-        public AddQuestion(MainForm mainForm)
+        public CreateExam(MainForm mainForm)
         {
             MainForm = mainForm;
             InitializeComponent();
@@ -35,7 +38,7 @@ namespace QUAZ
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Visible = false;
-            MainForm._AddQuestionOrGoExam.Visible = true;
+            MainForm._EditOrCreateExam.Visible = true;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -46,34 +49,21 @@ namespace QUAZ
                 string selectedFileName = string.Empty;
                 string testpath = string.Empty;
 
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
+                #region Old Code
 
-                #region If listbox is empty or there is no selected item then will deserialize default test file 
+                //if (File.Exists(testpath))
+                //{
+                //    using (StreamReader streamReader = new StreamReader(testpath))
+                //    {
+                //        var obj = (List<QuestionBlock>)xmlSerializer.Deserialize(streamReader);
+                //        MainForm.Questions = obj;
+                //        MainForm.QuestionCount = MainForm.Questions.Count();
+                //        MainForm.UserAnswers = new List<string>();
+                //    }
+                //}
+                #endregion 
 
-                if (listboxQuestions.SelectedIndex == -1 || listboxQuestions.Items == null)
-                {
-                    selectedFileName = "QuestionsXML.xml";
-                    testpath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\EYEquiz\QuestionsXML.xml";
-                }
-                else
-                {
-                    selectedFileName = listboxQuestions.SelectedItem.ToString();
-                    testpath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + $@"\EYEquiz\{selectedFileName}";
-                }
-
-                if (File.Exists(testpath))
-                {
-                    using (StreamReader streamReader = new StreamReader(testpath))
-                    {
-                        var obj = (List<QuestionBlock>)xmlSerializer.Deserialize(streamReader);
-                        MainForm.Questions = obj;
-                        MainForm.QuestionCount = MainForm.Questions.Count();
-                        MainForm.UserAnswers = new List<string>();
-                    }
-                }
-                #endregion
-
-                #region Add Questions
+                #region Add Answers
 
                 int id = 0;
 
@@ -87,8 +77,6 @@ namespace QUAZ
                 }
 
                 _Answers = new List<Answer>();
-
-                MainForm.UserAnswers.Add("");
 
                 for (int i = 0; i < RadioButtonAnswers.Count; i++)
                 {
@@ -112,30 +100,35 @@ namespace QUAZ
 
                     }
                 }
+                #endregion
 
-                MainForm.Questions.Add(new QuestionBlock()
+                #region Add Questions
+              
+                Questions.Add(new QuestionBlock()
                 {
-                    id = MainForm.Questions.Count - 1,
+                    id = Questions.Count - 1,
                     Text = QuestionText,
                     Answers = _Answers
                 });
 
                 QuestionText = string.Empty;
                 answerCount.Text = string.Empty;
+
                 #endregion
 
-                using (StreamWriter stream = new StreamWriter(testpath))
-                {
-                    xmlSerializer.Serialize(stream, MainForm.Questions);
-                }
+                MainForm.NumberOfQuestion = $"{Questions.Count} Questions";
 
-                customMessageBox.MessageText = "Question was added...";
+                btnSave.Enabled = true;
+
+                customMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
+                customMessageBox.MessageText = "Question added succesfully...";
                 customMessageBox.MessageTitle = "Info";
                 customMessageBox.ShowDialog();
             }
             else
             {
-                customMessageBox.MessageText = "Please, fill the important area ";
+                customMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
+                customMessageBox.MessageText = "Please, fill the compulsory area ";
                 customMessageBox.MessageTitle = "Info";
                 customMessageBox.ShowDialog();
             }
@@ -152,7 +145,7 @@ namespace QUAZ
                 {
                     RadioButtonAnswersText.Add(new MetroFramework.Controls.MetroTextBox());
                     RadioButtonAnswersText[i].Location = new Point(x + 20, y);
-                    RadioButtonAnswersText[i].Size = new Size(400, 20);
+                    RadioButtonAnswersText[i].Size = new Size(730, 20);
                     RadioButtonAnswersText[i].UseCustomBackColor = true;
                     RadioButtonAnswersText[i].BackColor = Color.FromArgb(61, 61, 61);
                     RadioButtonAnswersText[i].UseCustomForeColor = true;
@@ -180,27 +173,29 @@ namespace QUAZ
             }
         }
 
-        private void listboxQuestions_DragDrop(object sender, DragEventArgs e)
+        private void CreateExam_Load(object sender, EventArgs e)
         {
-            string[] filepath = (string[])e.Data.GetData(DataFormats.FileDrop);
-            var filename = filepath[0].Split('\\').Last();
-            listboxQuestions.Items.Add(filename);
+            Questions = new List<QuestionBlock>();
 
-            File.Copy(filepath[0], Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + $@"\EYEquiz\{filename}");
+            btnSave.Enabled = false;
         }
 
-        private void listboxQuestions_DragEnter(object sender, DragEventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            e.Effect = DragDropEffects.All;
-        }
+            SimpleForm = new SimpleForm();
 
-        private void AddQuestion_Load(object sender, EventArgs e)
-        {
-            var folderpath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\EYEquiz";
-            var filenames = (Directory.GetFiles(folderpath) as object[]);
-            foreach (var item in filenames)
+            if (SimpleForm.ShowDialog() == DialogResult.OK)
             {
-                listboxQuestions.Items.Add((item as string).Split('\\').Last());
+                using (StreamWriter stream = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + $@"\EYEquiz\{SimpleForm.FileName.Text}.xml"))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<QuestionBlock>));
+                    serializer.Serialize(stream, Questions);
+                }
+
+                customMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
+                customMessageBox.MessageText = "Exam saved succesfully...";
+                customMessageBox.MessageTitle = "Info";
+                customMessageBox.ShowDialog();
             }
         }
     }

@@ -18,14 +18,22 @@ namespace QUAZ
         public int OldAnswerCount { get; set; }
         public string QuestionText { get => txtboxQuestionText.Text; set => txtboxQuestionText.Text = value; }
         public string IsCorrectVariant { get; set; }
-
-        string SelectedFileName;
-
         public int CurrentQuestion { get; set; }
+
+        public FlowLayoutPanel Allradiobuttons { get => allRadiobuttons; set => allRadiobuttons = value; }
+        public FlowLayoutPanel Alltextbox { get => allTextbox; set => allTextbox = value; }
+        public string Textbox { get => txtboxQuestionText.Text; set => txtboxQuestionText.Text = value; }
+
+        public string SelectedFileName { get; set; }
+
+        public bool isClickedAddOrRemoveButton { get; set; }
+
+        public int CurrentAnswersCount { get; set; }
 
         MainForm MainForm;
         EditOrCreateExam EditOrCreateExam;
-        CustomMessageBox CustomMessageBox = new CustomMessageBox();
+        CustomMessageBox CustomMessageBox;
+        SimpleForm SimpleForm;
         MetroFramework.Controls.MetroButton addbutton;
         MetroFramework.Controls.MetroButton removebutton;
 
@@ -60,7 +68,7 @@ namespace QUAZ
                     txtbox.Text = MainForm.Questions[CurrentQuestion].Answers[i].Text;
                     txtbox.UseCustomBackColor = true;
                     txtbox.UseCustomForeColor = true;
-                    txtbox.Style = MetroFramework.MetroColorStyle.Silver;
+                    txtbox.Style = MetroFramework.MetroColorStyle.White;
                     txtbox.BackColor = Color.FromArgb(61, 61, 61);
                     txtbox.ForeColor = Color.White;
                     allTextbox.Controls.Add(txtbox);
@@ -116,7 +124,8 @@ namespace QUAZ
                     txtbox.Text = MainForm.Questions[CurrentQuestion].Answers[i].Text;
                     txtbox.UseCustomBackColor = true;
                     txtbox.UseCustomForeColor = true;
-                    txtbox.Style = MetroFramework.MetroColorStyle.Silver;
+                    txtbox.Multiline = true;
+                    txtbox.Style = MetroFramework.MetroColorStyle.White;
                     txtbox.BackColor = Color.FromArgb(61, 61, 61);
                     txtbox.ForeColor = Color.White;
                     allTextbox.Controls.Add(txtbox);
@@ -179,7 +188,8 @@ namespace QUAZ
                     txtbox.Text = MainForm.Questions[CurrentQuestion].Answers[i].Text;
                     txtbox.UseCustomBackColor = true;
                     txtbox.UseCustomForeColor = true;
-                    txtbox.Style = MetroFramework.MetroColorStyle.Silver;
+                    
+                    txtbox.Style = MetroFramework.MetroColorStyle.White;
                     txtbox.BackColor = Color.FromArgb(61, 61, 61);
                     txtbox.ForeColor = Color.White;
                     allTextbox.Controls.Add(txtbox);
@@ -245,6 +255,8 @@ namespace QUAZ
         {
             if (AnswerCount > 2)
             {
+                isClickedAddOrRemoveButton = true;
+
                 var last = allRadiobuttons.Controls.OfType<MetroFramework.Controls.MetroRadioButton>().Last<MetroFramework.Controls.MetroRadioButton>();
                 allRadiobuttons.Controls.Remove(last);
                 var last2 = allTextbox.Controls.OfType<MetroFramework.Controls.MetroTextBox>().Last<MetroFramework.Controls.MetroTextBox>();
@@ -261,6 +273,7 @@ namespace QUAZ
             }
             else
             {
+                CustomMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
                 CustomMessageBox.MessageText = "Min answer count is 2";
                 CustomMessageBox.MessageTitle = "Warning";
                 CustomMessageBox.ShowDialog();
@@ -271,6 +284,8 @@ namespace QUAZ
         {
             if (AnswerCount < 7)
             {
+                isClickedAddOrRemoveButton = true;
+
                 var radiobutton = new MetroFramework.Controls.MetroRadioButton();
                 radiobutton.Size = new Size(20, 20);
                 radiobutton.UseCustomBackColor = true;
@@ -296,6 +311,7 @@ namespace QUAZ
             }
             else
             {
+                CustomMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
                 CustomMessageBox.MessageText = "Max answer count is 7";
                 CustomMessageBox.MessageTitle = "Warning";
                 CustomMessageBox.ShowDialog();
@@ -304,80 +320,228 @@ namespace QUAZ
 
         private void btnAddQuestion_Click(object sender, EventArgs e)
         {
-            txtboxQuestionText.Text = string.Empty;
+            btnAddQuestion.Enabled = false;
+            btnPreviuos.Enabled = false;
+            btnNext.Enabled = false;
 
-            allTextbox.Controls.Clear();
-            allRadiobuttons.Controls.Clear();
+            isClickedAddOrRemoveButton = true;
+
+            txtboxQuestionText.Text = string.Empty;
+            AnswerCount = 2;
+            OldAnswerCount = 0;
+
+            int z = 0;
+
+            foreach (var item in allRadiobuttons.Controls)
+            {
+                z++;
+            }
+
+            for (int i = 0; i < z - 1; i++)
+            {
+                allTextbox.Controls[i].Text = string.Empty;
+                (allRadiobuttons.Controls[i] as MetroFramework.Controls.MetroRadioButton).Checked = false;
+            }
+
+            for (int i = z - 1; i > 1; i--)
+            {
+                allTextbox.Controls[i].Dispose();
+                allRadiobuttons.Controls[i].Dispose();
+            }
+
+
+            var x = allTextbox.Controls.OfType<MetroFramework.Controls.MetroTextBox>().Last<MetroFramework.Controls.MetroTextBox>().Location.X + 773;
+            var y = allTextbox.Controls.OfType<MetroFramework.Controls.MetroTextBox>().Last<MetroFramework.Controls.MetroTextBox>().Location.Y + 160;
+            addbutton.Location = new Point(x, y);
+            removebutton.Location = new Point(x, y + 30);
+
+
+            int c = 0;
+
+            foreach (var item in MainForm.Questions)
+            {
+                ++c;
+            }
+
+            QuestionBlock questionBlock = new QuestionBlock()
+            {
+                Answers = new List<Answer>()
+            };
+
+            MainForm.Questions.Add(questionBlock);
+
+            CurrentQuestion = c;
+
+            MainForm.NumberOfQuestion = $"{CurrentQuestion + 1} / {MainForm.Questions.Count} questions";
+
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
+            this.Dispose();
             MainForm._EditOrCreateExam.Visible = true;
-
+            MainForm.NumberOfQuestion = string.Empty;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            CustomMessageBox customMessageBox = new CustomMessageBox();
-            customMessageBox.MessageText = "Changes was done";
-            customMessageBox.MessageTitle = "Info";
-
-            MainForm.Questions[CurrentQuestion].Text = txtboxQuestionText.Text;
-
-            #region Added OR Removed Answers realization
-
-            if (OldAnswerCount < AnswerCount)
+            //Control any area filled or not 
+            if (allRadiobuttons.Controls.OfType<MetroFramework.Controls.MetroRadioButton>().FirstOrDefault(x => x.Checked == true) != null
+                && allTextbox.Controls.OfType<MetroFramework.Controls.MetroTextBox>().FirstOrDefault(x => x.Text == string.Empty || x.Text == string.Empty) == null
+                && txtboxQuestionText.Text != null
+                && txtboxQuestionText.Text != string.Empty)
             {
-                for (int i = OldAnswerCount; i < OldAnswerCount + (AnswerCount - OldAnswerCount); i++)
+                MainForm.Questions[CurrentQuestion].Text = txtboxQuestionText.Text;
+
+                #region Added OR Removed Answers realization
+
+                //if (OldAnswerCount < AnswerCount)
+                //{
+                //    for (int i = OldAnswerCount; i < OldAnswerCount + (AnswerCount - OldAnswerCount); i++)
+                //    {
+                //        if ((allRadiobuttons.Controls[i] as MetroFramework.Controls.MetroRadioButton).Checked)
+                //        {
+                //            MainForm.Questions[CurrentQuestion].Answers.Add(new Answer()
+                //            {
+                //                Text = allTextbox.Controls[i].Text,
+                //                id = i,
+                //                IsCorrect = "Yes"
+                //            });
+                //        }
+                //        else
+                //        {
+                //            MainForm.Questions[CurrentQuestion].Answers.Add(new Answer()
+                //            {
+                //                Text = allTextbox.Controls[i].Text,
+                //                id = i,
+                //                IsCorrect = "No"
+                //            });
+                //        }
+                //    }
+                //}
+                //else if (OldAnswerCount > AnswerCount)
+                //{
+                //    for (int i = OldAnswerCount - 1; i > OldAnswerCount - (OldAnswerCount - AnswerCount) - 1; i--)
+                //    {
+                //        MainForm.Questions[CurrentQuestion].Answers.RemoveAt(i);
+                //    }
+                //}
+                #endregion
+
+                #region If Answer add or remove clicked realize this code block
+
+                if (isClickedAddOrRemoveButton)
                 {
-                    if ((allRadiobuttons.Controls[i] as MetroFramework.Controls.MetroRadioButton).Checked)
+                    MainForm.Questions[CurrentQuestion].Answers.Clear();
+
+                    for (int i = 0; i < AnswerCount; i++)
                     {
-                        MainForm.Questions[CurrentQuestion].Answers.Add(new Answer()
+                        if ((allRadiobuttons.Controls[i] as MetroFramework.Controls.MetroRadioButton).Checked)
                         {
-                            Text = allTextbox.Controls[i].Text,
-                            id = i,
-                            IsCorrect = "Yes"
-                        });
-                    }
-                    else
-                    {
-                        MainForm.Questions[CurrentQuestion].Answers.Add(new Answer()
+                            MainForm.Questions[CurrentQuestion].Answers.Add(new Answer()
+                            {
+                                Text = allTextbox.Controls[i].Text,
+                                id = i,
+                                IsCorrect = "Yes"
+                            });
+                        }
+                        else
                         {
-                            Text = allTextbox.Controls[i].Text,
-                            id = i,
-                            IsCorrect = "No"
-                        });
+                            MainForm.Questions[CurrentQuestion].Answers.Add(new Answer()
+                            {
+                                Text = allTextbox.Controls[i].Text,
+                                id = i,
+                                IsCorrect = "No"
+                            });
+                        }
                     }
                 }
-            }
-            else if (OldAnswerCount > AnswerCount)
-            {
-                for (int i = OldAnswerCount - 1; i > OldAnswerCount - (OldAnswerCount - AnswerCount) - 1; i--)
-                {
-                    MainForm.Questions[CurrentQuestion].Answers.RemoveAt(i);
-                }
-            }
-            #endregion
+                #endregion
 
-            for (int i = 0; i < MainForm.Questions[CurrentQuestion].Answers.Count; i++)
-            {
-                MainForm.Questions[CurrentQuestion].Answers[i].Text = allTextbox.Controls[i].Text;
-
-                if ((allRadiobuttons.Controls[i] as MetroFramework.Controls.MetroRadioButton).Checked == true)
-                    MainForm.Questions[CurrentQuestion].Answers[i].IsCorrect = "Yes";
                 else
-                    MainForm.Questions[CurrentQuestion].Answers[i].IsCorrect = "No";
-            }
+                {
+                    for (int i = 0; i < MainForm.Questions[CurrentQuestion].Answers.Count; i++)
+                    {
+                        MainForm.Questions[CurrentQuestion].Answers[i].Text = allTextbox.Controls[i].Text;
 
-            using (StreamWriter stream = new StreamWriter(MainForm.MainLink + $@"\{SelectedFileName}"))
+                        if ((allRadiobuttons.Controls[i] as MetroFramework.Controls.MetroRadioButton).Checked == true)
+                            MainForm.Questions[CurrentQuestion].Answers[i].IsCorrect = "Yes";
+                        else
+                            MainForm.Questions[CurrentQuestion].Answers[i].IsCorrect = "No";
+                    }
+                }
+
+                using (StreamWriter stream = new StreamWriter(MainForm.MainLink + $@"\{SelectedFileName}"))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
+                    xmlSerializer.Serialize(stream, MainForm.Questions);
+                }
+
+                CustomMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
+                CustomMessageBox.MessageText = "Changes was done";
+                CustomMessageBox.MessageTitle = "Info";
+
+                CustomMessageBox.ShowDialog();
+
+                isClickedAddOrRemoveButton = false;
+
+                btnAddQuestion.Enabled = true;
+                btnNext.Enabled = true;
+                btnPreviuos.Enabled = true;
+            }
+            //otherwise this info output
+            else
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
-                xmlSerializer.Serialize(stream, MainForm.Questions);
+                CustomMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
+                CustomMessageBox.MessageText = "Please, fill the important area";
+                CustomMessageBox.MessageTitle = "Warning";
+                CustomMessageBox.ShowDialog();
             }
 
 
-            customMessageBox.ShowDialog();
+        }
+
+        private void btnRemoveQuestion_Click(object sender, EventArgs e)
+        {
+            
+            CustomMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OKCancel);
+            CustomMessageBox.MessageText = "Are you sure?";
+            CustomMessageBox.MessageTitle = "Warning";
+            var dialog = CustomMessageBox.ShowDialog();
+
+            if (dialog == DialogResult.OK)
+            {
+                btnNext.Enabled = true;
+                btnPreviuos.Enabled = true;
+                btnAddQuestion.Enabled = true;
+
+                MainForm.Questions.RemoveAt(CurrentQuestion);
+
+                using (StreamWriter stream = new StreamWriter(MainForm.MainLink + $@"\{SelectedFileName}"))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
+                    xmlSerializer.Serialize(stream, MainForm.Questions);
+                }
+            }
+        }
+
+        private void btnSaveAs_Click(object sender, EventArgs e)
+        {
+            SimpleForm = new SimpleForm();
+
+            if (SimpleForm.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter stream = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + $@"\EYEquiz\{SimpleForm.FileName.Text}.xml"))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(List<QuestionBlock>));
+                    serializer.Serialize(stream, MainForm.Questions);
+                }
+
+                CustomMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
+                CustomMessageBox.MessageText = "Exam saved succesfully...";
+                CustomMessageBox.MessageTitle = "Info";
+                CustomMessageBox.ShowDialog();
+            }
         }
     }
 }

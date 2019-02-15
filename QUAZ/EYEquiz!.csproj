@@ -79,11 +79,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddQuestion.cs">
+    <Compile Include="CreateExam.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddQuestion.Designer.cs">
-      <DependentUpon>AddQuestion.cs</DependentUpon>
+    <Compile Include="CreateExam.Designer.cs">
+      <DependentUpon>CreateExam.cs</DependentUpon>
     </Compile>
     <Compile Include="AddQuestionOrGoExam.cs">
       <SubType>UserControl</SubType>
@@ -92,11 +92,11 @@
       <DependentUpon>AddQuestionOrGoExam.cs</DependentUpon>
     </Compile>
     <Compile Include="Answer.cs" />
-    <Compile Include="ChooseQuestions.cs">
+    <Compile Include="SelectExam.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ChooseQuestions.Designer.cs">
-      <DependentUpon>ChooseQuestions.cs</DependentUpon>
+    <Compile Include="SelectExam.Designer.cs">
+      <DependentUpon>SelectExam.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomMessageBox.cs">
       <SubType>Form</SubType>
@@ -137,14 +137,20 @@
     <Compile Include="QuestionControl.Designer.cs">
       <DependentUpon>QuestionControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddQuestion.resx">
-      <DependentUpon>AddQuestion.cs</DependentUpon>
+    <Compile Include="SimpleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimpleForm.Designer.cs">
+      <DependentUpon>SimpleForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CreateExam.resx">
+      <DependentUpon>CreateExam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddQuestionOrGoExam.resx">
       <DependentUpon>AddQuestionOrGoExam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChooseQuestions.resx">
-      <DependentUpon>ChooseQuestions.cs</DependentUpon>
+    <EmbeddedResource Include="SelectExam.resx">
+      <DependentUpon>SelectExam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomMessageBox.resx">
       <DependentUpon>CustomMessageBox.cs</DependentUpon>
@@ -173,6 +179,9 @@
     </Compile>
     <EmbeddedResource Include="QuestionControl.resx">
       <DependentUpon>QuestionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimpleForm.resx">
+      <DependentUpon>SimpleForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

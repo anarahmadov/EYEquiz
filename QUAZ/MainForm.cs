@@ -21,9 +21,9 @@ namespace QUAZ
         public List<QuestionControl> QuestionControl { get; set; }
         public LogIn LoginView { get; set; }
         public AddQuestionOrGoExam _AddQuestionOrGoExam { get; set; }
-        public AddQuestion _AddQuestion { get; set; }
-        public ChooseQuestions _ChooseQuestions { get; set; }
-        public EditOrCreateExam _EditOrCreateExam{ get; set; }
+        public CreateExam _AddQuestion { get; set; }
+        public SelectExam _ChooseQuestions { get; set; }
+        public EditOrCreateExam _EditOrCreateExam { get; set; }
         public EditExam _EditExam { get; set; }
         public string MainLink { get; set; } = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\EYEquiz";
 
@@ -44,7 +44,9 @@ namespace QUAZ
 
         public bool Dragging { get; set; }
         public Point StartPoint { get; set; }
-        
+
+        CustomMessageBox CustomMessageBox;
+
         public MainForm()
         {
             InitializeComponent();
@@ -88,7 +90,8 @@ namespace QUAZ
             BtnSubmit.Click += BtnSubmit_Click;
             BtnSubmit.UseStyleColors = true;
             BtnSubmit.UseCustomBackColor = true;
-            BtnSubmit.BackColor = Color.FromArgb(0, 0, 0, 0);
+            BtnSubmit.UseCustomForeColor = true;
+            BtnSubmit.BackColor = Color.FromArgb(41, 41, 41);
             BtnSubmit.Style = MetroFramework.MetroColorStyle.Black;
             BtnSubmit.TabStop = false;
 
@@ -98,7 +101,8 @@ namespace QUAZ
             BtnBack.Click += BtnBack_Click;
             BtnBack.UseStyleColors = true;
             BtnBack.UseCustomBackColor = true;
-            BtnBack.BackColor = Color.FromArgb(0, 0, 0, 0);
+            BtnBack.UseCustomForeColor = true;
+            BtnBack.BackColor = Color.FromArgb(41, 41, 41);
             BtnBack.Style = MetroFramework.MetroColorStyle.Black;
             BtnBack.TabStop = false;
 
@@ -109,7 +113,8 @@ namespace QUAZ
             BtnAccept.Click += BtnAccept_Click;
             BtnAccept.UseStyleColors = true;
             BtnAccept.UseCustomBackColor = true;
-            BtnAccept.BackColor = Color.FromArgb(0, 0, 0, 0);
+            BtnAccept.UseCustomForeColor = true;
+            BtnAccept.BackColor = Color.FromArgb(41, 41, 41);
             BtnAccept.Style = MetroFramework.MetroColorStyle.Black;
             BtnAccept.TabStop = false;
 
@@ -119,7 +124,8 @@ namespace QUAZ
             BtnNext.Click += BtnNext_Click;
             BtnNext.UseStyleColors = true;
             BtnNext.UseCustomBackColor = true;
-            BtnNext.BackColor = Color.FromArgb(0, 0, 0, 0);
+            BtnNext.UseCustomForeColor = true;
+            BtnNext.BackColor = Color.FromArgb(41, 41, 41);
             BtnNext.Style = MetroFramework.MetroColorStyle.Black;
             BtnNext.TabStop = false;
 
@@ -131,129 +137,14 @@ namespace QUAZ
             #endregion
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            CurrentQuestion = 0;
-
-            //initialize of QuestionControl[CurrentQuestion]
-            if (File.Exists("QuestionsXML.xml"))
-            {
-                using (StreamReader streamReader = new StreamReader("QuestionsXML.xml"))
-                {
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
-                    var obj = (List<QuestionBlock>)xmlSerializer.Deserialize(streamReader);
-                    Questions = obj;
-                    QuestionCount = Questions.Count();
-                    UserAnswers = new List<string>();
-                    numberOfQuestion.Text = $"{CurrentQuestion + 1} / {QuestionCount} questions";
-
-                }
-                #region Question array declare
-                QuestionControl = new List<QuestionControl>();
-
-                for (int i = 0; i < QuestionCount; i++)
-                {
-                    QuestionControl[i] = new QuestionControl(this);
-                }
-                #endregion
-
-                Answercount = Questions[CurrentQuestion].Answers.Count();
-                QuestionControl[CurrentQuestion].LabelQuestion.Text = Questions[CurrentQuestion].Text;
-                QuestionControl[CurrentQuestion].Location = new Point(14, 35);
-
-                #region Answers initialize
-
-                for (int i = 0; i < Answercount; i++)
-                {
-                    var correctvariant = new PictureBox();
-                    correctvariant.Size = new Size(20, 20);
-                    correctvariant.Image = Image.FromFile("correction");
-                    //correctvariant.Visible = false;
-                    QuestionControl[CurrentQuestion].Flow.Controls.Add(correctvariant);
-                }
-
-                for (int i = 0; i < Answercount; i++)
-                {
-                    var variant = new MetroFramework.Controls.MetroRadioButton();
-                    variant.UseCustomForeColor = true;
-                    variant.ForeColor = Color.DarkGray;
-                    variant.Cursor = Cursors.Hand;
-                    variant.Style = MetroFramework.MetroColorStyle.Brown;
-                    variant.AutoSize = false;
-                    variant.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-                    variant.Text = Questions[CurrentQuestion].Answers[i].Text;
-                    variant.Size = new Size(700, 20);
-                    variant.UseCustomBackColor = true;
-                    variant.BackColor = Color.FromArgb(0, 0, 0, 0);
-                    variant.CheckedChanged += Answers_CheckedChanged;
-                    QuestionControl[CurrentQuestion].Flow.Controls.Add(variant);
-                }
-
-                #endregion
-
-                #region Four buttons initialize
-                BtnBack = new MetroFramework.Controls.MetroButton();
-                BtnAccept = new MetroFramework.Controls.MetroButton();
-                BtnNext = new MetroFramework.Controls.MetroButton();
-                BtnSubmit = new MetroFramework.Controls.MetroButton();
-
-                BtnSubmit.Size = new Size(150, 60);
-                BtnSubmit.Location = new Point(600, 415);
-                BtnSubmit.Text = "Submit";
-                BtnSubmit.Click += BtnSubmit_Click;
-                BtnSubmit.UseStyleColors = true;
-                BtnSubmit.UseCustomBackColor = true;
-                BtnSubmit.BackColor = Color.FromArgb(0, 0, 0, 0);
-                BtnSubmit.Style = MetroFramework.MetroColorStyle.Black;
-                BtnSubmit.TabStop = false;
-
-                BtnBack.Size = new Size(130, 40);
-                BtnBack.Location = new Point(10, 429);
-                BtnBack.Text = "Back";
-                BtnBack.Click += BtnBack_Click;
-                BtnBack.UseStyleColors = true;
-                BtnBack.UseCustomBackColor = true;
-                BtnBack.BackColor = Color.FromArgb(0, 0, 0, 0);
-                BtnBack.Style = MetroFramework.MetroColorStyle.Black;
-                BtnBack.TabStop = false;
-
-                BtnAccept.Size = new Size(130, 40);
-                BtnAccept.Location = new Point(200, 429);
-                BtnAccept.Text = "Accept";
-                BtnAccept.Enabled = false;
-                BtnAccept.Click += BtnAccept_Click;
-                BtnAccept.UseStyleColors = true;
-                BtnAccept.UseCustomBackColor = true;
-                BtnAccept.BackColor = Color.FromArgb(0, 0, 0, 0);
-                BtnAccept.Style = MetroFramework.MetroColorStyle.Black;
-                BtnAccept.TabStop = false;
-
-                BtnNext.Size = new Size(130, 40);
-                BtnNext.Location = new Point(390, 429);
-                BtnNext.Text = "Next";
-                BtnNext.Click += BtnNext_Click;
-                BtnNext.UseStyleColors = true;
-                BtnNext.UseCustomBackColor = true;
-                BtnNext.BackColor = Color.FromArgb(0, 0, 0, 0);
-                BtnNext.Style = MetroFramework.MetroColorStyle.Black;
-                BtnNext.TabStop = false;
-
-
-                this.Controls.Add(BtnSubmit);
-                this.Controls.Add(BtnBack);
-                this.Controls.Add(BtnAccept);
-                this.Controls.Add(BtnNext);
-                #endregion
-
-                this.Controls.Add(QuestionControl[CurrentQuestion]);
-            }
-        }
-
         private void BtnSubmit_Click(object sender, EventArgs e)
         {
-            var dialogResult = System.Windows.Forms.MessageBox.Show("Are you sure ?", "Warning", MessageBoxButtons.OKCancel);
+            CustomMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OKCancel);
+            CustomMessageBox.MessageText = "Are you sure?";
+            CustomMessageBox.MessageTitle = "Warning";
+            var dialogresult = CustomMessageBox.ShowDialog();
 
-            if (dialogResult == DialogResult.OK)
+            if (dialogresult == DialogResult.OK)
             {
                 isClickSubmit = true;
 
@@ -271,7 +162,7 @@ namespace QUAZ
                             var a = QuestionControl[i].Flow.Controls.OfType<MetroFramework.Controls.MetroRadioButton>().ElementAt(id);
                             (a as MetroFramework.Controls.MetroRadioButton).BackColor = Color.DimGray;
                         }
-                            ++unanswered;
+                        ++unanswered;
                     }
 
                     else if (UserAnswers[i] == Questions[i].Answers.Find(x => x.IsCorrect == "Yes").Text)
@@ -329,9 +220,35 @@ namespace QUAZ
 
                 #endregion
 
+                BtnSubmit.Visible = false;
+
+                #region Save As Button initialize
+
+                var btnSaveAs = new MetroFramework.Controls.MetroButton();
+                btnSaveAs.Location = new Point(600, 435);
+                btnSaveAs.Size = new Size(150, 60);
+                btnSaveAs.Text = "Save as";
+                btnSaveAs.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+                btnSaveAs.FontSize = MetroFramework.MetroButtonSize.Medium;
+                btnSaveAs.UseCustomBackColor = true;
+                btnSaveAs.UseCustomForeColor = true;
+                btnSaveAs.ForeColor = Color.DarkGray;
+                btnSaveAs.BackColor = Color.FromArgb(41, 41, 41);
+                btnSaveAs.Click += BtnSaveAs_Click;
+                btnSaveAs.TabStop = false;
+                this.Controls.Add(btnSaveAs);
+
+                #endregion
+
             }
 
 
+        }
+
+        private void BtnSaveAs_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog svf = new SaveFileDialog();
+            //svf.Filter = ""
         }
 
         private void BtnNext_Click(object sender, EventArgs e)
@@ -505,22 +422,22 @@ namespace QUAZ
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            //timer.Interval = 10;
-            //timer.Start();
-            Application.Exit();
+            timer.Interval = 10;
+            timer.Start();
+            //Application.Exit();
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            //if (this.Opacity > 0.0)
-            //{
-            //    this.Opacity -= 0.025;
-            //}
-            //else
-            //{
-            //    timer.Stop();
-            //    Application.Exit();
-            //}
+            if (this.Opacity > 0.0)
+            {
+                this.Opacity -= 0.025;
+            }
+            else
+            {
+                timer.Stop();
+                Application.Exit();
+            }
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -553,7 +470,90 @@ namespace QUAZ
             LoginView = new LogIn(this);
             LoginView.Location = new Point(0, 70);
             this.Controls.Add(LoginView);
+
         }
 
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_EditExam != null && _EditExam.Visible)
+            {
+
+                //Control any area filled or not 
+                if (_EditExam.Allradiobuttons.Controls.OfType<MetroFramework.Controls.MetroRadioButton>().FirstOrDefault(x => x.Checked == true) != null
+                && _EditExam.Alltextbox.Controls.OfType<MetroFramework.Controls.MetroTextBox>().FirstOrDefault(x => x.Text == string.Empty || x.Text == string.Empty) == null
+                && _EditExam.Textbox != null
+                && _EditExam.Textbox != string.Empty)
+                {
+                    CustomMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
+                    CustomMessageBox.MessageText = "Changes was done";
+                    CustomMessageBox.MessageTitle = "Info";
+
+                    Questions[CurrentQuestion].Text = _EditExam.Textbox;
+
+                    #region If Answer add or remove clicked realize this code block
+
+                    if (_EditExam.isClickedAddOrRemoveButton)
+                    {
+                        this.Questions[CurrentQuestion].Answers.Clear();
+
+                        for (int i = 0; i < _EditExam.AnswerCount; i++)
+                        {
+                            if ((_EditExam.Allradiobuttons.Controls[i] as MetroFramework.Controls.MetroRadioButton).Checked)
+                            {
+                                this.Questions[CurrentQuestion].Answers.Add(new Answer()
+                                {
+                                    Text = _EditExam.Alltextbox.Controls[i].Text,
+                                    id = i,
+                                    IsCorrect = "Yes"
+                                });
+                            }
+                            else
+                            {
+                                this.Questions[CurrentQuestion].Answers.Add(new Answer()
+                                {
+                                    Text = _EditExam.Alltextbox.Controls[i].Text,
+                                    id = i,
+                                    IsCorrect = "No"
+                                });
+                            }
+                        }
+                    }
+                    #endregion
+
+                    else
+                    {
+                        for (int i = 0; i < Questions[CurrentQuestion].Answers.Count; i++)
+                        {
+                            Questions[CurrentQuestion].Answers[i].Text = _EditExam.Alltextbox.Controls[i].Text;
+
+                            if ((_EditExam.Allradiobuttons.Controls[i] as MetroFramework.Controls.MetroRadioButton).Checked == true)
+                                Questions[CurrentQuestion].Answers[i].IsCorrect = "Yes";
+                            else
+                                Questions[CurrentQuestion].Answers[i].IsCorrect = "No";
+                        }
+                    }
+
+
+                    using (StreamWriter stream = new StreamWriter(MainLink + $@"\{_EditExam.SelectedFileName}"))
+                    {
+                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
+                        xmlSerializer.Serialize(stream, Questions);
+                    }
+
+
+                    CustomMessageBox.ShowDialog();
+                }
+
+                //otherwise this info output
+                else
+                {
+                    CustomMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
+                    CustomMessageBox.MessageText = "Please, fill the important area";
+                    CustomMessageBox.MessageTitle = "Warning";
+                    CustomMessageBox.ShowDialog();
+                }
+            }
+
+        }
     }
 }

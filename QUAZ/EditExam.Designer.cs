@@ -157,7 +157,7 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.btnSave.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnSave.Location = new System.Drawing.Point(464, 330);
+            this.btnSave.Location = new System.Drawing.Point(474, 331);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(116, 92);
             this.btnSave.TabIndex = 0;
@@ -216,6 +216,7 @@
             this.Name = "EditExam";
             this.Size = new System.Drawing.Size(800, 426);
             this.Load += new System.EventHandler(this.EditExam_Load);
+            this.VisibleChanged += new System.EventHandler(this.EditExam_VisibleChanged);
             this.ResumeLayout(false);
 
         }

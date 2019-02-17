@@ -59,6 +59,7 @@
             // 
             this.labelMessageTitle.AutoSize = true;
             this.labelMessageTitle.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.labelMessageTitle.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.labelMessageTitle.ForeColor = System.Drawing.Color.DarkGray;
             this.labelMessageTitle.Location = new System.Drawing.Point(3, 7);
             this.labelMessageTitle.Name = "labelMessageTitle";

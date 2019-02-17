@@ -30,8 +30,6 @@ namespace QUAZ
                 this.Visible = false;
                 MainForm.CurrentQuestion = 0;
 
-
-
                 #region Deserialize file that selected in listview
                 var defaulttestpath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + $@"\EYEquiz\{listViewAllQuestions.SelectedItems[0].Text}";
 

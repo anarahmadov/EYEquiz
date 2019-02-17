@@ -543,5 +543,13 @@ namespace QUAZ
                 CustomMessageBox.ShowDialog();
             }
         }
+
+        private void EditExam_VisibleChanged(object sender, EventArgs e)
+        {
+            if (Visible)
+            {
+                MainForm.MenuStrip.Enabled = true;
+            }
+        }
     }
 }

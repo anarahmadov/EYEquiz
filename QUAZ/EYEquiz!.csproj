@@ -53,6 +53,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialSkin">
       <HintPath>..\..\QUAZLAST!\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
     </Reference>
@@ -92,6 +95,9 @@
       <DependentUpon>AddQuestionOrGoExam.cs</DependentUpon>
     </Compile>
     <Compile Include="Answer.cs" />
+    <Compile Include="DataBase\UserContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="SelectExam.cs">
       <SubType>UserControl</SubType>
     </Compile>

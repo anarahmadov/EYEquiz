@@ -1,4 +1,6 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +19,8 @@ namespace QUAZ
 {
     public partial class MainForm : Form
     {
+        public MenuStrip MenuStrip { get => menuStrip; set => menuStrip = value; }
+
         public List<QuestionBlock> Questions { get; set; }
         public List<QuestionControl> QuestionControl { get; set; }
         public LogIn LoginView { get; set; }
@@ -35,12 +39,16 @@ namespace QUAZ
         public MetroFramework.Controls.MetroButton BtnAccept { get; set; }
         public MetroFramework.Controls.MetroButton BtnNext { get; set; }
         public MetroFramework.Controls.MetroButton BtnSubmit { get; set; }
+        public MetroFramework.Controls.MetroButton BtnSaveAs { get; set; }
         //public StatusStrip StatusStrip { get => statusStrip; set => statusStrip = value; }
 
         public string NumberOfQuestion { get => numberOfQuestion.Text; set => numberOfQuestion.Text = value; }
 
         public List<string> UserAnswers { get; set; }
         public bool isClickSubmit { get; set; }
+
+        public string Report { get; set; }
+        public string FullNameUser { get; set; }
 
         public bool Dragging { get; set; }
         public Point StartPoint { get; set; }
@@ -83,6 +91,7 @@ namespace QUAZ
             BtnAccept = new MetroFramework.Controls.MetroButton();
             BtnNext = new MetroFramework.Controls.MetroButton();
             BtnSubmit = new MetroFramework.Controls.MetroButton();
+            BtnSaveAs = new MetroFramework.Controls.MetroButton();
 
             BtnSubmit.Size = new Size(150, 60);
             BtnSubmit.Location = new Point(600, 435);
@@ -91,7 +100,8 @@ namespace QUAZ
             BtnSubmit.UseStyleColors = true;
             BtnSubmit.UseCustomBackColor = true;
             BtnSubmit.UseCustomForeColor = true;
-            BtnSubmit.BackColor = Color.FromArgb(41, 41, 41);
+            BtnSubmit.BackColor = Color.FromArgb(21, 21, 21);
+            BtnSubmit.ForeColor = Color.DarkGray;
             BtnSubmit.Style = MetroFramework.MetroColorStyle.Black;
             BtnSubmit.TabStop = false;
 
@@ -103,6 +113,7 @@ namespace QUAZ
             BtnBack.UseCustomBackColor = true;
             BtnBack.UseCustomForeColor = true;
             BtnBack.BackColor = Color.FromArgb(41, 41, 41);
+            BtnBack.ForeColor = Color.DarkGray;
             BtnBack.Style = MetroFramework.MetroColorStyle.Black;
             BtnBack.TabStop = false;
 
@@ -115,6 +126,7 @@ namespace QUAZ
             BtnAccept.UseCustomBackColor = true;
             BtnAccept.UseCustomForeColor = true;
             BtnAccept.BackColor = Color.FromArgb(41, 41, 41);
+            BtnAccept.ForeColor = Color.DarkGray;
             BtnAccept.Style = MetroFramework.MetroColorStyle.Black;
             BtnAccept.TabStop = false;
 
@@ -126,10 +138,24 @@ namespace QUAZ
             BtnNext.UseCustomBackColor = true;
             BtnNext.UseCustomForeColor = true;
             BtnNext.BackColor = Color.FromArgb(41, 41, 41);
+            BtnNext.ForeColor = Color.DarkGray;
             BtnNext.Style = MetroFramework.MetroColorStyle.Black;
             BtnNext.TabStop = false;
 
+            BtnSaveAs.Location = new Point(600, 435);
+            BtnSaveAs.Size = new Size(150, 60);
+            BtnSaveAs.Text = "Save as";
+            BtnSaveAs.FontWeight = MetroFramework.MetroButtonWeight.Regular;
+            BtnSaveAs.FontSize = MetroFramework.MetroButtonSize.Medium;
+            BtnSaveAs.UseCustomBackColor = true;
+            BtnSaveAs.UseCustomForeColor = true;
+            BtnSaveAs.ForeColor = Color.DarkGray;
+            BtnSaveAs.BackColor = Color.FromArgb(21, 21, 21);
+            BtnSaveAs.Click += BtnSaveAs_Click;
+            BtnSaveAs.TabStop = false;
+            BtnSaveAs.Visible = false;
 
+            this.Controls.Add(BtnSaveAs);
             this.Controls.Add(BtnSubmit);
             this.Controls.Add(BtnBack);
             this.Controls.Add(BtnAccept);
@@ -188,11 +214,19 @@ namespace QUAZ
                 }
 
                 ToolStripLabel toolStripLabel = new ToolStripLabel();
-                toolStripLabel.Font = new Font("Segoe UI", 9);
+                toolStripLabel.Font = new System.Drawing.Font("Segoe UI", 9);
                 toolStripLabel.Text = $"                                                            " +
                     $" Correct : {correct}   Wrong : {wrong}   Unanswered : {unanswered}";
                 toolStripLabel.ForeColor = Color.White;
                 statusStrip.Items.Add(toolStripLabel);
+
+                var resultbypercent = correct * 100 / QuestionCount;
+
+                Report = $"Correct : {correct}\n" +
+                    $"Wrong : {wrong}\n" +
+                    $"Unanswered : {unanswered}\n\n" +
+                    $"Result : {resultbypercent} %";
+
                 #endregion
 
                 BtnSubmit.Enabled = false;
@@ -221,34 +255,162 @@ namespace QUAZ
                 #endregion
 
                 BtnSubmit.Visible = false;
-
-                #region Save As Button initialize
-
-                var btnSaveAs = new MetroFramework.Controls.MetroButton();
-                btnSaveAs.Location = new Point(600, 435);
-                btnSaveAs.Size = new Size(150, 60);
-                btnSaveAs.Text = "Save as";
-                btnSaveAs.FontWeight = MetroFramework.MetroButtonWeight.Regular;
-                btnSaveAs.FontSize = MetroFramework.MetroButtonSize.Medium;
-                btnSaveAs.UseCustomBackColor = true;
-                btnSaveAs.UseCustomForeColor = true;
-                btnSaveAs.ForeColor = Color.DarkGray;
-                btnSaveAs.BackColor = Color.FromArgb(41, 41, 41);
-                btnSaveAs.Click += BtnSaveAs_Click;
-                btnSaveAs.TabStop = false;
-                this.Controls.Add(btnSaveAs);
-
-                #endregion
+                BtnSaveAs.Visible = true;
 
             }
-
-
         }
 
         private void BtnSaveAs_Click(object sender, EventArgs e)
         {
-            SaveFileDialog svf = new SaveFileDialog();
-            //svf.Filter = ""
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "PDF files (*.pdf)|*.pdf |DOC files (*.doc)|*.doc", ValidateNames = true })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Document doc = new Document(PageSize.A4.Rotate());
+
+                    #region If SaveFileDialog filter selected item is PDF
+
+                    if (sfd.FilterIndex == 1)
+                    {
+                        try
+                        {
+                            var writer = PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
+                            doc.Open();
+                            
+                            #region Write to PDF
+
+                            doc.AddTitle("EYEquiz");
+                            doc.Add(new Paragraph($"{FullNameUser}"));
+                            //doc.Add(new Paragraph(" "));
+                            //doc.Add(new Paragraph(" "));
+
+
+                            doc.Add(new Paragraph(" "));
+
+                            for (int i = 0; i < Report.Split('\n').Count(); i++)
+                            {
+                                if (Report.Split('\n')[i] == Report.Split('\n').Last())
+                                    break;
+
+                                doc.Add(new Paragraph($"{Report.Split('\n')[i]}"));
+                            }
+
+                            doc.Add(new Paragraph("  "));
+                            doc.Add(new Paragraph("  "));
+                            doc.Add(new Paragraph("  "));
+                            doc.Add(new Paragraph("  "));
+                            doc.Add(new Paragraph("  "));
+
+
+                            PdfContentByte contentByte = writer.DirectContent;
+                            contentByte.SetColorStroke(BaseColor.BLACK);
+                            contentByte.MoveTo(0, 410);
+                            contentByte.LineTo(850, 410);
+                            contentByte.Stroke();
+
+                            contentByte.Rectangle(30, 420, PageSize.A4.Width * 1 / 2, PageSize.A4.Height / 6);
+                            contentByte.Stroke();
+
+                            #endregion
+
+                            #region Write Result Word
+
+                            iTextSharp.text.Font font = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 18, iTextSharp.text.Font.BOLDITALIC, new BaseColor(0, 0, 0));
+                            Phrase phrase = new Phrase(0.0f, $"{Report.Split('\n').Last()}", font);
+                            ColumnText.ShowTextAligned(contentByte, Element.ALIGN_CENTER, phrase, 85, 430, 0.0f);
+
+                            #endregion
+
+                            for (int i = 0; i < QuestionCount; i++)
+                            {
+                                doc.Add(new Paragraph($"{i + 1}. {Questions[i].Text}"));
+                                doc.Add(new Paragraph("                        "));
+
+                                if (QuestionControl[i].Flow.Controls.OfType<MetroFramework.Controls.MetroRadioButton>()
+                                        .FirstOrDefault(x => x.Checked == true) != null)
+                                {
+                                    for (int z = 0; z < Answercount; z++)
+                                    {
+                                        if (Questions[i].Answers[z].Text == Questions[i].Answers.Find(x => x.IsCorrect == "Yes").Text)
+                                        {
+                                            if (Questions[i].Answers[z].Text == QuestionControl[i].Flow.Controls.OfType<MetroFramework.Controls.MetroRadioButton>()
+                                            .FirstOrDefault(x => x.Checked == true).Text)
+                                            {
+                                                doc.Add(new Paragraph($"+ {Questions[i].Answers[z].Text}"));
+                                            }
+
+                                            else
+                                                doc.Add(new Paragraph($"* {Questions[i].Answers[z].Text}"));
+                                        }
+
+                                        else if (Questions[i].Answers[z].Text == QuestionControl[i].Flow.Controls.OfType<MetroFramework.Controls.MetroRadioButton>()
+                                       .FirstOrDefault(x => x.Checked == true).Text)
+                                            doc.Add(new Paragraph($"X {Questions[i].Answers[z].Text}"));
+                                        else
+                                        {
+                                                doc.Add(new Paragraph($"  {Questions[i].Answers[z].Text}"));
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    for (int z = 0; z < Answercount; z++)
+                                    {
+
+                                        if (Questions[i].Answers[z].Text == Questions[i].Answers.Find(x => x.IsCorrect == "Yes").Text)
+                                            doc.Add(new Paragraph($"#  {Questions[i].Answers[z].Text}"));
+
+                                        else
+                                            doc.Add(new Paragraph($"    {Questions[i].Answers[z].Text}"));
+
+                                    }
+                                }
+
+                                doc.Add(new Paragraph("                        "));
+                            }
+
+                            doc.Close();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    #endregion
+
+                    #region If SaveFileDialog filter selected item is DOC
+
+                    else if (sfd.FilterIndex == 2)
+                    {
+                        var path = Path.GetFullPath($"{sfd.FileName}");
+
+                        using (StreamWriter stream = new StreamWriter(Path.GetFullPath(sfd.FileName)))
+                        {
+                            stream.Write($"{Report}                  {FullNameUser}");
+                            stream.Write("\n\n\n\n");
+
+                            for (int i = 0; i < QuestionCount; i++)
+                            {
+                                stream.Write($"{i+1}. {Questions[i].Text}");
+                                stream.Write($"\n");
+
+                                for (int z = 0; z < Answercount; z++)
+                                {
+                                    stream.Write($"   {Questions[i].Answers[z].Text}");
+                                }
+
+                                stream.Write($"\n");
+                                //stream.Write($" ");
+
+                            }
+                        }
+                        
+                    }
+
+                    #endregion
+                }
+            }
         }
 
         private void BtnNext_Click(object sender, EventArgs e)
@@ -422,9 +584,9 @@ namespace QUAZ
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            timer.Interval = 10;
-            timer.Start();
-            //Application.Exit();
+            //timer.Interval = 10;
+            //timer.Start();
+            Application.Exit();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -436,12 +598,15 @@ namespace QUAZ
             else
             {
                 timer.Stop();
+                //WindowState = FormWindowState.Minimized;
                 Application.Exit();
             }
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
+            //timer.Interval = 10;
+            //timer.Start();
             WindowState = FormWindowState.Minimized;
         }
 
@@ -470,7 +635,6 @@ namespace QUAZ
             LoginView = new LogIn(this);
             LoginView.Location = new Point(0, 70);
             this.Controls.Add(LoginView);
-
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)

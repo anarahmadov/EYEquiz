@@ -35,11 +35,11 @@
             this.btnExit = new MetroFramework.Controls.MetroButton();
             this.btnMinimize = new MetroFramework.Controls.MetroButton();
             this.topPanel = new MetroFramework.Controls.MetroPanel();
+            this.labelNameApp = new MetroFramework.Controls.MetroLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelNameApp = new MetroFramework.Controls.MetroLabel();
             this.statusStrip.SuspendLayout();
             this.topPanel.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -121,40 +121,6 @@
             this.topPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseMove);
             this.topPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseUp);
             // 
-            // menuStrip
-            // 
-            this.menuStrip.AllowItemReorder = true;
-            this.menuStrip.BackColor = System.Drawing.Color.Gray;
-            this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.menuStrip.Location = new System.Drawing.Point(0, 46);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(45, 24);
-            this.menuStrip.TabIndex = 21;
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveItem,
-            this.saveAsItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // saveItem
-            // 
-            this.saveItem.Name = "saveItem";
-            this.saveItem.Size = new System.Drawing.Size(180, 22);
-            this.saveItem.Text = "Save ";
-            this.saveItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
-            // saveAsItem
-            // 
-            this.saveAsItem.Name = "saveAsItem";
-            this.saveAsItem.Size = new System.Drawing.Size(180, 22);
-            this.saveAsItem.Text = "Save as..";
-            // 
             // labelNameApp
             // 
             this.labelNameApp.FontSize = MetroFramework.MetroLabelSize.Tall;
@@ -168,6 +134,41 @@
             this.labelNameApp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.labelNameApp.UseCustomBackColor = true;
             this.labelNameApp.UseCustomForeColor = true;
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.AllowItemReorder = true;
+            this.menuStrip.BackColor = System.Drawing.Color.Gray;
+            this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(0, 46);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(165, 24);
+            this.menuStrip.TabIndex = 21;
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveItem,
+            this.saveAsItem});
+            this.fileToolStripMenuItem.Enabled = false;
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // saveItem
+            // 
+            this.saveItem.Name = "saveItem";
+            this.saveItem.Size = new System.Drawing.Size(118, 22);
+            this.saveItem.Text = "Save ";
+            this.saveItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // saveAsItem
+            // 
+            this.saveAsItem.Name = "saveAsItem";
+            this.saveAsItem.Size = new System.Drawing.Size(118, 22);
+            this.saveAsItem.Text = "Save as..";
             // 
             // MainForm
             // 

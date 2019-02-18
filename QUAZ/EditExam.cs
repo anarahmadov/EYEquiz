@@ -247,8 +247,6 @@ namespace QUAZ
                         (allRadiobuttons.Controls[i] as MetroFramework.Controls.MetroRadioButton).Checked = true;
                 }
             }
-
-
         }
 
         private void Removebutton_Click(object sender, EventArgs e)
@@ -548,7 +546,7 @@ namespace QUAZ
         {
             if (Visible)
             {
-                MainForm.MenuStrip.Enabled = true;
+                MainForm.MenuStrip.Items.Find("fileToolStripMenuItem", true)[0].Enabled = true;
             }
         }
     }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.numberOfQuestion = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer = new System.Windows.Forms.Timer(this.components);
@@ -40,9 +41,11 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.statusStrip.SuspendLayout();
             this.topPanel.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip
@@ -105,6 +108,7 @@
             // 
             this.topPanel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.topPanel.BackColor = System.Drawing.Color.Black;
+            this.topPanel.Controls.Add(this.pictureBox1);
             this.topPanel.Controls.Add(this.labelNameApp);
             this.topPanel.HorizontalScrollbarBarColor = true;
             this.topPanel.HorizontalScrollbarHighlightOnWheel = false;
@@ -126,7 +130,7 @@
             this.labelNameApp.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.labelNameApp.FontWeight = MetroFramework.MetroLabelWeight.Regular;
             this.labelNameApp.ForeColor = System.Drawing.Color.Silver;
-            this.labelNameApp.Location = new System.Drawing.Point(28, 9);
+            this.labelNameApp.Location = new System.Drawing.Point(48, 9);
             this.labelNameApp.Name = "labelNameApp";
             this.labelNameApp.Size = new System.Drawing.Size(145, 25);
             this.labelNameApp.TabIndex = 2;
@@ -144,7 +148,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 46);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(165, 24);
+            this.menuStrip.Size = new System.Drawing.Size(45, 24);
             this.menuStrip.TabIndex = 21;
             // 
             // fileToolStripMenuItem
@@ -159,16 +163,28 @@
             // 
             // saveItem
             // 
+            this.saveItem.BackColor = System.Drawing.Color.Gray;
             this.saveItem.Name = "saveItem";
-            this.saveItem.Size = new System.Drawing.Size(118, 22);
+            this.saveItem.Size = new System.Drawing.Size(180, 22);
             this.saveItem.Text = "Save ";
             this.saveItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsItem
             // 
+            this.saveAsItem.BackColor = System.Drawing.Color.Gray;
             this.saveAsItem.Name = "saveAsItem";
-            this.saveAsItem.Size = new System.Drawing.Size(118, 22);
+            this.saveAsItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsItem.Text = "Save as..";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(44, 43);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 
@@ -182,6 +198,7 @@
             this.Controls.Add(this.topPanel);
             this.Controls.Add(this.btnExit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -192,6 +209,7 @@
             this.topPanel.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,6 +227,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsItem;
         private MetroFramework.Controls.MetroLabel labelNameApp;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

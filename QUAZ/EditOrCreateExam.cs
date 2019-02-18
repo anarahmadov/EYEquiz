@@ -15,9 +15,9 @@ namespace QUAZ
     {
         MainForm MainForm;
         CustomMessageBox CustomMessageBox;
+        public string BaseDirectoryPath { get; set; } = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\EYEquiz";
 
         public string SelectedFileName { get; set; }
-        public int a { get; set; } = 0;
 
         public EditOrCreateExam(MainForm mainForm)
         {
@@ -51,6 +51,8 @@ namespace QUAZ
             {
                 this.Visible = false;
                 MainForm._EditExam = new EditExam(MainForm, this);
+                MainForm._EditExam.Visible = false;
+                MainForm._EditExam.Visible = true;
                 MainForm._EditExam.Location = new Point(0, 70);
                 MainForm.Controls.Add(MainForm._EditExam);
             }
@@ -61,8 +63,6 @@ namespace QUAZ
                 CustomMessageBox.MessageTitle = "Warning";
                 CustomMessageBox.ShowDialog();
             }
-
-
         }
 
         private void listViewAllExams_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,6 +124,50 @@ namespace QUAZ
                     listViewAllExams.Items[i].ForeColor = Color.DarkGray;
                     listViewAllExams.ShowItemToolTips = true;
                 }
+            }
+        }
+
+        private void deleteExamToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var a = listViewAllExams.SelectedItems[0].Text;
+            File.Delete(BaseDirectoryPath + $@"\{a}");
+            listViewAllExams.Items.Clear();
+
+            List<string> paths = new List<string>();
+            List<string> filesname = new List<string>();
+
+            paths = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\EYEquiz").ToList<string>();
+
+            for (int i = 0; i < paths.Count(); i++)
+            {
+                filesname.Add(paths[i].Split('\\').Last());
+            }
+
+            for (int i = 0; i < paths.Count(); i++)
+            {
+                listViewAllExams.Items.Add(filesname[i], 0);
+                listViewAllExams.Items[i].ForeColor = Color.DarkGray;
+                listViewAllExams.ShowItemToolTips = true;
+            }
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listViewAllExams.SelectedItems.Count != 0)
+            {
+                this.Visible = false;
+                MainForm._EditExam = new EditExam(MainForm, this);
+                MainForm._EditExam.Visible = false;
+                MainForm._EditExam.Visible = true;
+                MainForm._EditExam.Location = new Point(0, 70);
+                MainForm.Controls.Add(MainForm._EditExam);
+            }
+            else
+            {
+                CustomMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
+                CustomMessageBox.MessageText = "There is no selected file";
+                CustomMessageBox.MessageTitle = "Warning";
+                CustomMessageBox.ShowDialog();
             }
         }
     }

@@ -9,7 +9,7 @@ namespace QUAZ.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(QUAZ.DataBase.UserContext context)

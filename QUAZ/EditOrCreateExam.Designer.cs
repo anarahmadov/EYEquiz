@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditOrCreateExam));
             this.listViewAllExams = new System.Windows.Forms.ListView();
+            this.contxtMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteExamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.btnEditExam = new MetroFramework.Controls.MetroButton();
             this.btnBack = new MetroFramework.Controls.MetroButton();
             this.btnCreateExam = new MetroFramework.Controls.MetroButton();
-            this.contxtMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteExamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contxtMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +60,32 @@
             this.listViewAllExams.DragDrop += new System.Windows.Forms.DragEventHandler(this.listViewAllExams_DragDrop);
             this.listViewAllExams.DragEnter += new System.Windows.Forms.DragEventHandler(this.listViewAllExams_DragEnter);
             // 
+            // contxtMenu
+            // 
+            this.contxtMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
+            this.deleteExamToolStripMenuItem});
+            this.contxtMenu.Name = "contxtMenu";
+            this.contxtMenu.Size = new System.Drawing.Size(111, 48);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
+            this.editToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editToolStripMenuItem.Image")));
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // deleteExamToolStripMenuItem
+            // 
+            this.deleteExamToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
+            this.deleteExamToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteExamToolStripMenuItem.Image")));
+            this.deleteExamToolStripMenuItem.Name = "deleteExamToolStripMenuItem";
+            this.deleteExamToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.deleteExamToolStripMenuItem.Text = "Delete ";
+            this.deleteExamToolStripMenuItem.Click += new System.EventHandler(this.deleteExamToolStripMenuItem_Click);
+            // 
             // imageList
             // 
             this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
@@ -70,7 +96,6 @@
             // 
             this.btnEditExam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.btnEditExam.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.btnEditExam.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.btnEditExam.ForeColor = System.Drawing.Color.DarkGray;
             this.btnEditExam.Location = new System.Drawing.Point(31, 350);
             this.btnEditExam.Name = "btnEditExam";
@@ -89,7 +114,7 @@
             this.btnBack.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.btnBack.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.btnBack.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnBack.Location = new System.Drawing.Point(249, 350);
+            this.btnBack.Location = new System.Drawing.Point(591, 350);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(178, 64);
             this.btnBack.TabIndex = 1;
@@ -105,7 +130,7 @@
             this.btnCreateExam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.btnCreateExam.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.btnCreateExam.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnCreateExam.Location = new System.Drawing.Point(600, 350);
+            this.btnCreateExam.Location = new System.Drawing.Point(245, 350);
             this.btnCreateExam.Name = "btnCreateExam";
             this.btnCreateExam.Size = new System.Drawing.Size(178, 64);
             this.btnCreateExam.TabIndex = 1;
@@ -115,32 +140,6 @@
             this.btnCreateExam.UseCustomForeColor = true;
             this.btnCreateExam.UseSelectable = true;
             this.btnCreateExam.Click += new System.EventHandler(this.btnCreateExam_Click);
-            // 
-            // contxtMenu
-            // 
-            this.contxtMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editToolStripMenuItem,
-            this.deleteExamToolStripMenuItem});
-            this.contxtMenu.Name = "contxtMenu";
-            this.contxtMenu.Size = new System.Drawing.Size(181, 70);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
-            this.editToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editToolStripMenuItem.Image")));
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
-            // deleteExamToolStripMenuItem
-            // 
-            this.deleteExamToolStripMenuItem.BackColor = System.Drawing.Color.Gray;
-            this.deleteExamToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteExamToolStripMenuItem.Image")));
-            this.deleteExamToolStripMenuItem.Name = "deleteExamToolStripMenuItem";
-            this.deleteExamToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.deleteExamToolStripMenuItem.Text = "Delete ";
-            this.deleteExamToolStripMenuItem.Click += new System.EventHandler(this.deleteExamToolStripMenuItem_Click);
             // 
             // EditOrCreateExam
             // 

@@ -241,16 +241,21 @@ namespace QUAZ
 
                 foreach (var item in QuestionControl[CurrentQuestion].Flow.Controls)
                 {
-                    (item as MetroFramework.Controls.MetroRadioButton).Enabled = false;
+                    (item as MetroFramework.Controls.MetroRadioButton).Enabled = false;          
                 }
 
-                if (UserAnswers[CurrentQuestion] == null)
+                #region
+                for (int i = 0; i < Questions.Count; i++)
                 {
-                    foreach (var item in QuestionControl[CurrentQuestion].Flow.Controls)
+                    if (UserAnswers[i] == string.Empty)
                     {
-                        (item as MetroFramework.Controls.MetroRadioButton).Checked = false;
+                        foreach (var item in QuestionControl[i].Flow.Controls)
+                        {
+                            (item as MetroFramework.Controls.MetroRadioButton).Checked = false;
+                        }
                     }
                 }
+                #endregion
 
                 #endregion
 
@@ -336,20 +341,19 @@ namespace QUAZ
                                             if (Questions[i].Answers[z].Text == QuestionControl[i].Flow.Controls.OfType<MetroFramework.Controls.MetroRadioButton>()
                                             .FirstOrDefault(x => x.Checked == true).Text)
                                             {
-                                                doc.Add(new Paragraph($"+ {Questions[i].Answers[z].Text}"));
+                                                doc.Add(new Paragraph($"     {Questions[i].Answers[z].Text} [Correct answered]"));
                                             }
 
                                             else
-                                                doc.Add(new Paragraph($"* {Questions[i].Answers[z].Text}"));
+                                                doc.Add(new Paragraph($"     {Questions[i].Answers[z].Text} [Correct answer]"));
                                         }
 
                                         else if (Questions[i].Answers[z].Text == QuestionControl[i].Flow.Controls.OfType<MetroFramework.Controls.MetroRadioButton>()
                                        .FirstOrDefault(x => x.Checked == true).Text)
-                                            doc.Add(new Paragraph($"X {Questions[i].Answers[z].Text}"));
-                                        else
-                                        {
-                                                doc.Add(new Paragraph($"  {Questions[i].Answers[z].Text}"));
-                                        }
+                                            doc.Add(new Paragraph($"     {Questions[i].Answers[z].Text} [Your answer]"));
+                                        else                              
+                                                doc.Add(new Paragraph($"     {Questions[i].Answers[z].Text}"));
+                                        
                                     }
                                 }
                                 else
@@ -358,10 +362,10 @@ namespace QUAZ
                                     {
 
                                         if (Questions[i].Answers[z].Text == Questions[i].Answers.Find(x => x.IsCorrect == "Yes").Text)
-                                            doc.Add(new Paragraph($"#  {Questions[i].Answers[z].Text}"));
+                                            doc.Add(new Paragraph($"     {Questions[i].Answers[z].Text} [Correct answer]"));
 
                                         else
-                                            doc.Add(new Paragraph($"    {Questions[i].Answers[z].Text}"));
+                                            doc.Add(new Paragraph($"     {Questions[i].Answers[z].Text}"));
 
                                     }
                                 }
@@ -395,13 +399,46 @@ namespace QUAZ
                                 stream.Write($"{i+1}. {Questions[i].Text}");
                                 stream.Write($"\n");
 
-                                for (int z = 0; z < Answercount; z++)
+                                if (QuestionControl[i].Flow.Controls.OfType<MetroFramework.Controls.MetroRadioButton>()
+                                        .FirstOrDefault(x => x.Checked == true) != null)
                                 {
-                                    stream.Write($"   {Questions[i].Answers[z].Text}");
+                                    for (int z = 0; z < Answercount; z++)
+                                    {
+                                        if (Questions[i].Answers[z].Text == Questions[i].Answers.Find(x => x.IsCorrect == "Yes").Text)
+                                        {
+                                            if (Questions[i].Answers[z].Text == QuestionControl[i].Flow.Controls.OfType<MetroFramework.Controls.MetroRadioButton>()
+                                            .FirstOrDefault(x => x.Checked == true).Text)
+                                            {
+                                                stream.Write($"     {Questions[i].Answers[z].Text} [Correct answered]");
+                                            }
+
+                                            else
+                                                stream.Write($"     {Questions[i].Answers[z].Text} [Correct answer]");
+                                        }
+
+                                        else if (Questions[i].Answers[z].Text == QuestionControl[i].Flow.Controls.OfType<MetroFramework.Controls.MetroRadioButton>()
+                                       .FirstOrDefault(x => x.Checked == true).Text)
+                                            stream.Write($"     {Questions[i].Answers[z].Text} [Your answer]");
+                                        else
+                                            stream.Write($"     {Questions[i].Answers[z].Text}");
+
+                                    }
+                                }
+                                else
+                                {
+                                    for (int z = 0; z < Answercount; z++)
+                                    {
+
+                                        if (Questions[i].Answers[z].Text == Questions[i].Answers.Find(x => x.IsCorrect == "Yes").Text)
+                                            stream.Write($"     {Questions[i].Answers[z].Text} [Correct answer]");
+
+                                        else
+                                            stream.Write($"     {Questions[i].Answers[z].Text}");
+
+                                    }
                                 }
 
                                 stream.Write($"\n");
-                                //stream.Write($" ");
 
                             }
                         }

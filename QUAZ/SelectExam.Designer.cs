@@ -87,11 +87,11 @@
             // 
             // label
             // 
-            this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label.ForeColor = System.Drawing.Color.DarkGray;
-            this.label.Location = new System.Drawing.Point(3, 390);
+            this.label.Location = new System.Drawing.Point(3, 376);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(100, 23);
+            this.label.Size = new System.Drawing.Size(100, 37);
             this.label.TabIndex = 1;
             this.label.Text = "Question count";
             this.label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -110,9 +110,10 @@
             this.txtboxQuestionCount.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txtboxQuestionCount.CustomButton.UseSelectable = true;
             this.txtboxQuestionCount.CustomButton.Visible = false;
+            this.txtboxQuestionCount.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.txtboxQuestionCount.ForeColor = System.Drawing.Color.White;
             this.txtboxQuestionCount.Lines = new string[0];
-            this.txtboxQuestionCount.Location = new System.Drawing.Point(106, 390);
+            this.txtboxQuestionCount.Location = new System.Drawing.Point(109, 383);
             this.txtboxQuestionCount.MaxLength = 32767;
             this.txtboxQuestionCount.Name = "txtboxQuestionCount";
             this.txtboxQuestionCount.PasswordChar = '\0';
@@ -122,7 +123,7 @@
             this.txtboxQuestionCount.SelectionLength = 0;
             this.txtboxQuestionCount.SelectionStart = 0;
             this.txtboxQuestionCount.ShortcutsEnabled = true;
-            this.txtboxQuestionCount.Size = new System.Drawing.Size(200, 23);
+            this.txtboxQuestionCount.Size = new System.Drawing.Size(200, 28);
             this.txtboxQuestionCount.Style = MetroFramework.MetroColorStyle.White;
             this.txtboxQuestionCount.TabIndex = 2;
             this.txtboxQuestionCount.UseCustomBackColor = true;
@@ -130,7 +131,8 @@
             this.txtboxQuestionCount.UseSelectable = true;
             this.txtboxQuestionCount.WaterMark = "Question count";
             this.txtboxQuestionCount.WaterMarkColor = System.Drawing.Color.Gray;
-            this.txtboxQuestionCount.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtboxQuestionCount.WaterMarkFont = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Italic);
+            this.txtboxQuestionCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtboxQuestionCount_KeyPress);
             // 
             // btnStart
             // 

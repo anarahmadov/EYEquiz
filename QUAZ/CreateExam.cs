@@ -136,7 +136,7 @@ namespace QUAZ
 
         private void answerCount_TextChanged(object sender, EventArgs e)
         {
-            if (answerCount.Text != string.Empty && int.Parse(answerCount.Text) <= 6)
+            if (answerCount.Text != string.Empty && answerCount.Text.Count() < 9 && int.Parse(answerCount.Text) <= 6)
             {
                 RadioButtonAnswers = new List<MetroFramework.Controls.MetroRadioButton>();
                 RadioButtonAnswersText = new List<MetroFramework.Controls.MetroTextBox>();
@@ -196,6 +196,16 @@ namespace QUAZ
                 customMessageBox.MessageText = "Exam saved succesfully...";
                 customMessageBox.MessageTitle = "Info";
                 customMessageBox.ShowDialog();
+            }
+        }
+
+        private void answerCount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            var ch = e.KeyChar;
+
+            if (!Char.IsDigit(ch) && ch != 8)
+            {
+                e.Handled = true;
             }
         }
     }

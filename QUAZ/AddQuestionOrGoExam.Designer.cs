@@ -43,7 +43,7 @@
             this.btnAddQuestions.Name = "btnAddQuestions";
             this.btnAddQuestions.Size = new System.Drawing.Size(304, 39);
             this.btnAddQuestions.TabIndex = 0;
-            this.btnAddQuestions.Text = "Edit or create exam";
+            this.btnAddQuestions.Text = "EDİT OR CREATE EXAM";
             this.btnAddQuestions.UseCustomBackColor = true;
             this.btnAddQuestions.UseCustomForeColor = true;
             this.btnAddQuestions.UseSelectable = true;
@@ -59,7 +59,7 @@
             this.btnGoExam.Name = "btnGoExam";
             this.btnGoExam.Size = new System.Drawing.Size(304, 39);
             this.btnGoExam.TabIndex = 0;
-            this.btnGoExam.Text = "Go exam";
+            this.btnGoExam.Text = "GO EXAM";
             this.btnGoExam.UseCustomBackColor = true;
             this.btnGoExam.UseCustomForeColor = true;
             this.btnGoExam.UseSelectable = true;

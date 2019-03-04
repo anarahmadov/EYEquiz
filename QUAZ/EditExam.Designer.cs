@@ -64,7 +64,7 @@
             this.btnAddQuestion.Size = new System.Drawing.Size(116, 35);
             this.btnAddQuestion.TabIndex = 0;
             this.btnAddQuestion.TabStop = false;
-            this.btnAddQuestion.Text = "Add new question";
+            this.btnAddQuestion.Text = "Add new test";
             this.btnAddQuestion.UseCustomBackColor = true;
             this.btnAddQuestion.UseCustomForeColor = true;
             this.btnAddQuestion.UseSelectable = true;
@@ -177,7 +177,7 @@
             this.btnRemoveQuestion.Size = new System.Drawing.Size(116, 35);
             this.btnRemoveQuestion.TabIndex = 0;
             this.btnRemoveQuestion.TabStop = false;
-            this.btnRemoveQuestion.Text = "Remove question";
+            this.btnRemoveQuestion.Text = "Remove test";
             this.btnRemoveQuestion.UseCustomBackColor = true;
             this.btnRemoveQuestion.UseCustomForeColor = true;
             this.btnRemoveQuestion.UseSelectable = true;

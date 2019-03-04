@@ -35,7 +35,6 @@
             this.labelQuestionCount = new System.Windows.Forms.Label();
             this.labelQuestionTExt = new System.Windows.Forms.Label();
             this.btnSave = new MetroFramework.Controls.MetroButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtboxQuestion
@@ -118,6 +117,7 @@
             this.answerCount.WaterMarkColor = System.Drawing.Color.Gray;
             this.answerCount.WaterMarkFont = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.answerCount.TextChanged += new System.EventHandler(this.answerCount_TextChanged);
+            this.answerCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.answerCount_KeyPress);
             // 
             // labelQuestionCount
             // 
@@ -127,7 +127,7 @@
             this.labelQuestionCount.Name = "labelQuestionCount";
             this.labelQuestionCount.Size = new System.Drawing.Size(100, 23);
             this.labelQuestionCount.TabIndex = 5;
-            this.labelQuestionCount.Text = "Question count";
+            this.labelQuestionCount.Text = "Answer count";
             this.labelQuestionCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelQuestionTExt
@@ -156,23 +156,11 @@
             this.btnSave.UseSelectable = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.DarkGray;
-            this.label1.Location = new System.Drawing.Point(343, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Question text";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // CreateExam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(61)))), ((int)(((byte)(61)))));
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.labelQuestionTExt);
             this.Controls.Add(this.labelQuestionCount);
             this.Controls.Add(this.answerCount);
@@ -196,6 +184,5 @@
         private System.Windows.Forms.Label labelQuestionCount;
         private System.Windows.Forms.Label labelQuestionTExt;
         private MetroFramework.Controls.MetroButton btnSave;
-        private System.Windows.Forms.Label label1;
     }
 }

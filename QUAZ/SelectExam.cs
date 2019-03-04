@@ -16,6 +16,7 @@ namespace QUAZ
     {
         MainForm MainForm;
         CustomMessageBox customMessageBox;
+        public int QuestionCount { get => int.Parse(txtboxQuestionCount.Text);}
 
         public SelectExam(MainForm mainForm)
         {
@@ -26,51 +27,70 @@ namespace QUAZ
         private void btnStart_Click(object sender, EventArgs e)
         {
             if (listViewAllQuestions.SelectedIndices.Count != 0)
-            {
-                this.Visible = false;
-                MainForm.CurrentQuestion = 0;
-
-                #region Deserialize file that selected in listview
+            {                                        
                 var defaulttestpath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + $@"\EYEquiz\{listViewAllQuestions.SelectedItems[0].Text}";
 
-                //initialize of QuestionControl[CurrentQuestion]
-                if (File.Exists(defaulttestpath))
+                List<QuestionBlock> obj;
+                using (StreamReader streamReader = new StreamReader(defaulttestpath))
                 {
-                    using (StreamReader streamReader = new StreamReader(defaulttestpath))
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
+                    obj = (List<QuestionBlock>)xmlSerializer.Deserialize(streamReader);
+                }             
+
+                if (QuestionCount <= obj.Count && QuestionCount != 0)
+                {
+                    this.Visible = false;
+                    MainForm.CurrentQuestion = 0;
+
+                    #region Deserialize file that selected in listview
+                    //initialize of QuestionControl[CurrentQuestion]
+                    if (File.Exists(defaulttestpath))
                     {
-                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<QuestionBlock>));
-                        var obj = (List<QuestionBlock>)xmlSerializer.Deserialize(streamReader);
-                        MainForm.Questions = obj;
+                        MainForm.Questions = new List<QuestionBlock>();
+
+                        for (int i = 0; i < QuestionCount; i++)
+                        {
+                            MainForm.Questions.Add(new QuestionBlock());
+                            MainForm.Questions[i] = obj[i];
+                        }
+
                         MainForm.QuestionCount = MainForm.Questions.Count();
                         MainForm.UserAnswers = new List<string>();
                     }
+                    #endregion
+
+                    #region Question array declare
+
+                    MainForm.QuestionControl = new List<QuestionControl>();
+
+                    for (int i = 0; i < QuestionCount; i++)
+                    {
+                        MainForm.QuestionControl.Add(new QuestionControl(MainForm));
+                    }
+
+                    #endregion
+
+                    MainForm.Answercount = MainForm.Questions[MainForm.CurrentQuestion].Answers.Count();
+                    MainForm.QuestionControl[MainForm.CurrentQuestion].LabelQuestion.Text = MainForm.Questions[MainForm.CurrentQuestion].Text;
+                    MainForm.QuestionControl[MainForm.CurrentQuestion].Location = new Point(14, 70);
+                    MainForm.NumberOfQuestion = $"{MainForm.CurrentQuestion + 1} / {MainForm.Questions.Count} questions";
+
+                    for (int i = 0; i < MainForm.Questions.Count; i++)
+                    {
+                        MainForm.UserAnswers.Add("");
+                    }
+
+                    MainForm.FirstQuestionAnswersInitialize();
+                    MainForm.FourButtonInitialize();
+                    MainForm.Controls.Add(MainForm.QuestionControl[MainForm.CurrentQuestion]);
                 }
-                #endregion
-
-                #region Question array declare
-
-                MainForm.QuestionControl = new List<QuestionControl>();
-
-                for (int i = 0; i < MainForm.Questions.Count; i++)
+                else
                 {
-                    MainForm.QuestionControl.Add(new QuestionControl(MainForm));
+                    customMessageBox = new CustomMessageBox(CustomMessageBoxButtons.OK);
+                    customMessageBox.MessageText = "Question count is invalid";
+                    customMessageBox.MessageTitle = "Warning";
+                    customMessageBox.ShowDialog();
                 }
-
-                #endregion
-
-                MainForm.Answercount = MainForm.Questions[MainForm.CurrentQuestion].Answers.Count();
-                MainForm.QuestionControl[MainForm.CurrentQuestion].LabelQuestion.Text = MainForm.Questions[MainForm.CurrentQuestion].Text;
-                MainForm.QuestionControl[MainForm.CurrentQuestion].Location = new Point(14, 70);
-                MainForm.NumberOfQuestion = $"{MainForm.CurrentQuestion + 1} / {MainForm.Questions.Count} questions";
-
-                for (int i = 0; i < MainForm.Questions.Count; i++)
-                {
-                    MainForm.UserAnswers.Add("");
-                }
-
-                MainForm.FirstQuestionAnswersInitialize();
-                MainForm.FourButtonInitialize();
-                MainForm.Controls.Add(MainForm.QuestionControl[MainForm.CurrentQuestion]);
             }
             else
             {
@@ -100,6 +120,17 @@ namespace QUAZ
                 listViewAllQuestions.Items[i].ForeColor = Color.DarkGray;
                 listViewAllQuestions.ShowItemToolTips = true;
             }
+        }
+
+        private void txtboxQuestionCount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            var ch = e.KeyChar;
+
+            if (!Char.IsDigit(ch) && ch != 8)
+            {
+                e.Handled = true;
+            }
+
         }
     }
 }
